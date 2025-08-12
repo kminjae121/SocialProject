@@ -3,19 +3,23 @@ using UnityEngine;
 
 public abstract class Factory : MonoBehaviour
 {
-    [Header("ReduceTime")]
-    [SerializeField] protected float _reduceTime = 3f;
+    [Header("FactorySO")]
+    [SerializeField] private FactorySO _factorySO;
+    protected float _reduceTime => _factorySO.ReduceTime;
+   
+    protected float _reduceValue => _factorySO.ReduceValue;
 
-    [Space(10)]
-    [Header("ReduceValue")]
-    [SerializeField] protected float _reduceValue = 0.1f;
+    protected float _increaseEnergy => _factorySO.IncreasingValue;
 
     protected float currentEfficiency = 100;
 
     protected Coroutine _reduceCoroutine;
 
-    
 
+    private void OnEnable()
+    {
+        AutoReduceEfficiency();
+    }
     private void OnDisable()
     {
         StopCoroutine(_reduceCoroutine);
