@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System;
 using UnityEngine;
 
-public class EnergyManager : MonoSingleton<EnergyManager>, IEventable
+public class EnergyManager : MonoSingleton<EnergyManager>
 {
     public float currentCityEnergy;
 
@@ -14,27 +14,34 @@ public class EnergyManager : MonoSingleton<EnergyManager>, IEventable
         base.Awake();
     }
 
-    private void LightOff(TurnOffTheLight evt)
+    private void LightOff()
     {
         _lightChannel.RaiseEvent(LightEvent.lightEvent.Initialize(true));
     }
 
-    private void LightTurnOn(TurnOffTheLight evt)
+    private void LightTurnOn()
     {
         _lightChannel.RaiseEvent(LightEvent.lightEvent.Initialize(false));
     }
 
-    public void GetEnergy(float energy) => currentCityEnergy += energy;
-
-    public void MinusEnergyValue(float energy, float value) => energy -= value; 
-    public void BadEvent()
+    public void GetEnergy(float energy)
     {
-        
+        if(currentCityEnergy < 0)
+        {
+            LightTurnOn();
+        }
+
+        currentCityEnergy += energy;
     }
 
-    public void GoodEvent()
+    public void MinusEnergyValue(float value)
     {
-        
-    }
+        currentCityEnergy -= value; 
 
+        if(currentCityEnergy <= 0)
+        {
+            currentCityEnergy = 0;
+            LightOff();
+        }
+    }
 }

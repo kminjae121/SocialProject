@@ -1,18 +1,32 @@
+using System;
 using UnityEngine;
 
-public class SunFactory : Factory, IEventable
+public class SunFactory : Factory
 {
+    private void Awake()
+    {
+        _minusEvent += HandleMinus;
+        _fixEvent += HandleFix;
+        _brokeEvent += HandleBroke;
+    }
+
+
     protected override void MakingEnergy()
     {
         EnergyManager.Instance.GetEnergy(_increaseEnergy);
     }
-    public void BadEvent()
+    private void HandleBroke()
     {
-        Debug.Log("±²ÀåÈ÷ È¿À²ÀÌ ³·¾ÆÁü");
+        gameObject.SetActive(false);
     }
 
-    public void GoodEvent()
+    private void HandleFix()
     {
-        return;
+        PlusIncreaseEnergy();
+    }
+
+    private void HandleMinus()
+    {
+        MinusIncreaseEnergy();
     }
 }

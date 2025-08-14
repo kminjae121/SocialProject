@@ -1,21 +1,21 @@
 using UnityEngine;
 
-public class WindFactory : Factory, IEventable
+public class WindFactory : Factory
 {
-    
+
+    private void Awake()
+    {
+        _minusEvent += HandleMinus;
+    }
     protected override void MakingEnergy()
     {
         EnergyManager.Instance.GetEnergy(_increaseEnergy);
-        base.MakingEnergy();
     }
 
-    public void BadEvent()
+    private void HandleMinus()
     {
-        Debug.Log("ºÎ¼­Áü");
+
     }
 
-    public void GoodEvent()
-    {
-        return;
-    }
+
 }
