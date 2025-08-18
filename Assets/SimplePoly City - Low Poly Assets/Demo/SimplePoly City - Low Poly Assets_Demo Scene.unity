@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319f928c7f4b72140820c24663842b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoursPerSecond: 1
+  hoursPerSecond: 30
   sun: {fileID: 1416758924}
 --- !u!4 &681745982
 Transform:

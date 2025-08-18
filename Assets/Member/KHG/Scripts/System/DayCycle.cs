@@ -43,6 +43,6 @@ public class DayCycle : MonoBehaviour
         float targetAngle = (_hour * 15f) - 90;
 
         //sun.rotation = Quaternion.Euler(targetAngle, sun.rotation.y, sun.rotation.z);
-        sun.rotation = Quaternion.Euler(Interpolater.Lerp(sun.rotation.x, targetAngle,1), sun.rotation.y, sun.rotation.z);
+        sun.rotation = Quaternion.Euler(targetAngle, sun.rotation.y, sun.rotation.z);
     }
 }
