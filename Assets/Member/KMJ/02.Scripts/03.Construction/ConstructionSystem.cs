@@ -89,18 +89,19 @@ public class ConstructionSystem : MonoBehaviour
 
     private void Update()
     {
-        if (selectObjectIndex < 0)
-            return;
-        
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
+        
+        mouseIndicator.transform.position = mousePosition;
+        cellIndicator.transform.position = _grid.CellToWorld(gridPosition);
+        
+        if (selectObjectIndex < 0)
+           return;
+        
         
         bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
 
         previewRenderer.material.color = placementValidity ? Color.white : Color.red;
         
-        
-        mouseIndicator.transform.position = mousePosition;
-        cellIndicator.transform.position = _grid.CellToWorld(gridPosition);
     }
 }

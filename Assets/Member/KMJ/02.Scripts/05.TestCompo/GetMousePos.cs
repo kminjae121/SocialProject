@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class GetMousePos : MonoBehaviour
 {
+    [SerializeField] private Camera _sceneCam;
+    private Vector3 lastPosition;
     private Vector3 _screenPosition;
     private Vector3 _worldPosition;
     [SerializeField] private LayerMask whatIsGround;
@@ -27,15 +29,16 @@ public class GetMousePos : MonoBehaviour
 
     public Vector3 GetWorldPosition()
     {
-        Camera mainCam = Camera.main; 
-        Debug.Assert(mainCam != null, "No main camera in this scene");
-    
-        Ray cameraRay = mainCam.ScreenPointToRay(_screenPosition);
-        if (Physics.Raycast(cameraRay, out RaycastHit hit, mainCam.farClipPlane, whatIsGround))
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = _sceneCam.nearClipPlane;
+        Ray ray = _sceneCam.ScreenPointToRay(mousePos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100, whatIsGround))
         {
-            _worldPosition = hit.point;
+            Debug.Log(hit.point);
+            lastPosition = hit.point;
         }
 
-        return _worldPosition;
+        return lastPosition;
     }
 }
