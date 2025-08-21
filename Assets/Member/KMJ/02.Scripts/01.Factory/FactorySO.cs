@@ -17,6 +17,8 @@ public class FactorySO : ScriptableObject
     [Range(0, 20)]
     public float ReduceValue = 0.1f;
 
+    [Space(5)]
+    [Header("CollectGroundLayerMask")]
     public LayerMask _whatIsCollect;
 
     private void OnValidate()
@@ -24,6 +26,6 @@ public class FactorySO : ScriptableObject
         if (FactoryName == string.Empty)
             return;
 
-        this.name = FactoryName;
+        name = FactoryName;
     }
 }
