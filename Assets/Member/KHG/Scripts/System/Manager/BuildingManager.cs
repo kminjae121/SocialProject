@@ -29,7 +29,7 @@ namespace KHG.Scripts.Managers
             foreach (var building in buildings)
             {
                 building.SetActive(value);
-                yield return new WaitForSeconds(0.025f);
+                yield return new WaitForSeconds(0.001f);
             }
         }
     }
