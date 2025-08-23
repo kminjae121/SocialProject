@@ -12,7 +12,7 @@ namespace KHG.Scripts.Managers
         [SerializeField] private GameEventChannelSO buildingChannel;
 
         public int MaxPopulation { get; private set; }
-        public List<Building> buildings;
+        public List<Structure> structures;
 
         private void Awake()
         {
@@ -26,9 +26,9 @@ namespace KHG.Scripts.Managers
 
         private IEnumerator ChangeLight(bool value)
         {
-            foreach (var building in buildings)
+            foreach (var structure in structures)
             {
-                building.SetActive(value);
+                structure.SetActive(value);
                 yield return new WaitForSeconds(0.001f);
             }
         }
