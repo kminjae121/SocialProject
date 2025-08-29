@@ -35,7 +35,6 @@ public class GetMousePos : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100, whatIsGround))
         {
-            Debug.Log(hit.point);
             lastPosition = hit.point;
         }
 
