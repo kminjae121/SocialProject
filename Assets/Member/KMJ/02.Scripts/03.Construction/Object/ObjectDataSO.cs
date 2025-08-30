@@ -20,4 +20,8 @@ public class ObjectData
     [field: SerializeField]
     public GameObject prefab { get; private set; }
     
+    [field: SerializeField] public Transform trm { get; private set; }
+    
+    
+    
 }
