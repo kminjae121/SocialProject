@@ -32,6 +32,7 @@ public class ConstructionSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
+        print("예쓰");
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
 
