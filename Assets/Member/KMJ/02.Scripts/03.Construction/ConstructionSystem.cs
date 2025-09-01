@@ -32,10 +32,15 @@ public class ConstructionSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
-        print("예쓰");
+       
+        
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
 
+        if (ResourceManager.Instance.Satisfaction >= database.objectData[selectObjectIndex].price)
+            return;
+        
+        
         if (selectObjectIndex < 0)
         {
             return;

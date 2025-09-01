@@ -22,6 +22,6 @@ public class ObjectData
     
     [field: SerializeField] public Transform trm { get; private set; }
     
-    
+    [field: SerializeField] public int price { get; private set; }
     
 }
