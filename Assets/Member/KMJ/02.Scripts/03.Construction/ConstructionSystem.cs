@@ -30,6 +30,15 @@ public class ConstructionSystem : MonoBehaviour
         previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
 
+    public bool DetectedObject(ObjectData objData)
+    {
+        Collider[] collider = Physics.OverlapBox(transform.position, objData.DetectedRangeVec, Quaternion.identity,
+            objData.DetectedLayer);
+
+        if (collider != null)
+            return true;
+    }
+
     public void StartPlacement(int ID)
     {
        
@@ -68,6 +77,8 @@ public class ConstructionSystem : MonoBehaviour
         gameObj.transform.position = _grid.CellToWorld(gridPosition);
         placeGameObjects.Add(gameObj);
         GridData selectData = database.objectData[selectObjectIndex].ID  == 0 ? floorData : placeData;
+
+        DetectedObject(database.objectData[selectObjectIndex]);
         
         selectData.AddObjectAt(gridPosition,
             database.objectData[selectObjectIndex].size,
