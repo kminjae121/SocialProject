@@ -24,4 +24,9 @@ public class ObjectData
     
     [field: SerializeField] public int price { get; private set; }
     
+    [field: SerializeField] public Vector3 DetectedRangeVec { get; private set; }
+    
+    [field: SerializeField] public float DetectedRangeFloat { get; private set; }
+    
+    [field: SerializeField] public LayerMask DetectedLayer { get; private set; }
 }
