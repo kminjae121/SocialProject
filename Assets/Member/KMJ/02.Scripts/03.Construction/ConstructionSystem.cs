@@ -37,6 +37,8 @@ public class ConstructionSystem : MonoBehaviour
 
         if (collider != null)
             return true;
+
+        return false;
     }
 
     public void StartPlacement(int ID)
