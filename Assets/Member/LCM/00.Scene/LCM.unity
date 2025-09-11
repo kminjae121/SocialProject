@@ -305,9 +305,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9e7880d899432a97dc63408a01b848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceChannel: {fileID: 0}
-  wattConversion: {fileID: 786344049}
+  resourceChannel: {fileID: 11400000, guid: a4dbe9913607ace4e8ce703435754e59, type: 2}
   wattText: {fileID: 1179340549}
+  wattUnits:
+  - W
+  - KW
+  - MW
+  - GW
+  wattConversionPanel: {fileID: 950666592}
+  showWattConversionSpeed: 1
 --- !u!1 &524258044
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +548,7 @@ GameObject:
   - component: {fileID: 786344051}
   - component: {fileID: 786344052}
   m_Layer: 5
-  m_Name: WattConversionPanel
+  m_Name: WattConversionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,7 +671,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 786344049}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 476350608}
+        m_TargetAssemblyTypeName: Member.LCM._01.Scripts.UI.WattUI, Assembly-CSharp
+        m_MethodName: ShowConversionPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &866102575
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +925,7 @@ GameObject:
   - component: {fileID: 950666592}
   - component: {fileID: 950666594}
   m_Layer: 5
-  m_Name: Watt
+  m_Name: WattCoversionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
