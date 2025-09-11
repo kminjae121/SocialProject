@@ -2,7 +2,7 @@ using Core.Events;
 using System;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : MonoSingleton<ResourceManager>
 {
     [SerializeField] private GameEventChannelSO resourceChannel;
     public int Population { get; private set; }

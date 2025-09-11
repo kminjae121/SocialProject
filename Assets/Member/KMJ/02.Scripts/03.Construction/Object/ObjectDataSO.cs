@@ -20,4 +20,13 @@ public class ObjectData
     [field: SerializeField]
     public GameObject prefab { get; private set; }
     
+    [field: SerializeField] public Transform trm { get; private set; }
+    
+    [field: SerializeField] public int price { get; private set; }
+    
+    [field: SerializeField] public Vector3 DetectedRangeVec { get; private set; }
+    
+    [field: SerializeField] public float DetectedRangeFloat { get; private set; }
+    
+    [field: SerializeField] public LayerMask DetectedLayer { get; private set; }
 }
