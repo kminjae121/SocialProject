@@ -17,3 +17,10 @@ MonoBehaviour:
     <ID>k__BackingField: 1
     <size>k__BackingField: {x: 1, y: 1}
     <prefab>k__BackingField: {fileID: 5772780409800997494, guid: 52b480e4e53754347a479fb8620597f5, type: 3}
+    <trm>k__BackingField: {fileID: 0}
+    <price>k__BackingField: 10
+    <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
+    <DetectedRangeFloat>k__BackingField: 0
+    <DetectedLayer>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 0
