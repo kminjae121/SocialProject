@@ -1,48 +1,52 @@
 using UnityEngine;
-using Utility.Unity.Common;
 
 public class DayCycle : MonoBehaviour
 {
-    [SerializeField] private float hoursPerSecond = 30;
+    [SerializeField] private float hoursPerSecond = 60f;
     [SerializeField] private Transform sun;
-    public int _day { get; private set; }
-    public int _hour { get; private set; }
 
-    private DelayInvoker<int> _timeSet;
-    private int _totalTime;
+    public int Day { get; private set; }
+    public int Hour { get; private set; }
+
+    private Light _sunLight;
+    private float _totalTime;
 
     private void OnEnable()
     {
-        Initialize(0, 13);
+        _sunLight = sun.GetComponent<Light>();
+        Initialize(0, 6);
     }
 
     public void Initialize(int d, int h)
     {
-        _day = d;
-        _hour = h;
-        _totalTime = h + d * 24;
-        _timeSet = new DelayInvoker<int>(RaiseTime, 1, hoursPerSecond);
-    }
-
-    private void RaiseTime(int value)
-    {
-        _totalTime += value;
-        _day = _totalTime / 24;
-        _hour = _totalTime % 24;
+        Day = d;
+        Hour = h;
+        _totalTime = h + d * 24f;
     }
 
     private void Update()
     {
-        _timeSet.Tick();
-        SetSky(hoursPerSecond);
+        _totalTime += hoursPerSecond * Time.deltaTime;
+        Day = Mathf.FloorToInt(_totalTime / 24f);
+        Hour = Mathf.FloorToInt(_totalTime % 24f);
+        SetSky();
+        SetLight();
     }
 
-    private void SetSky(float duration)
+    private void SetSky()
     {
-        float currentAngle = sun.rotation.x;
-        float targetAngle = (_hour * 15f) - 90;
+        float hourInDay = _totalTime % 24f;
+        float angle = (hourInDay / 24f) * 360f - 90f;
+        Quaternion targetRot = Quaternion.Euler(angle, 0f, 0f);
+        sun.rotation = targetRot;
 
-        //sun.rotation = Quaternion.Euler(targetAngle, sun.rotation.y, sun.rotation.z);
-        sun.rotation = Quaternion.Euler(targetAngle, sun.rotation.y, sun.rotation.z);
+        print($"{Day}:{Hour}");
+    }
+
+    private void SetLight()
+    {
+        float dot = Vector3.Dot(sun.forward, Vector3.down);
+        float intensity = Mathf.Clamp01(dot);
+        _sunLight.intensity = intensity;
     }
 }
