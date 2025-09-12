@@ -2,11 +2,11 @@ using Core.Events;
 using System;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : MonoSingleton<ResourceManager>
 {
     [SerializeField] private GameEventChannelSO resourceChannel;
     public int Population { get; private set; }
-    public int Satisfaction { get; private set; }
+    [field: SerializeField] public int Satisfaction { get; private set; }
     public int Electricity { get; private set; } //Wh
 
     private void Awake()
@@ -24,6 +24,19 @@ public class ResourceManager : MonoBehaviour
     private void HandleSatisfaction(SatisfactionEvent arg)
     {
         Satisfaction = arg.Satisfaction;
+    }
+
+    public void ReduceSatisfaction(int amount)
+    {
+        if (Satisfaction - amount < 0)
+            return;
+        
+        Satisfaction -= amount;
+    }
+
+    public bool CanConstructionObject(int amount)
+    {
+        return Satisfaction - amount >= 0;   
     }
 
     private void HandleElectricity(ElectricityEvent arg)

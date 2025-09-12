@@ -30,11 +30,28 @@ public class ConstructionSystem : MonoBehaviour
         previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
 
+    public bool DetectedObject(ObjectData objData)
+    {
+        Collider[] collider = Physics.OverlapBox(transform.position, objData.DetectedRangeVec, Quaternion.identity,
+            objData.DetectedLayer);
+
+        if (collider != null)
+            return true;
+
+        return false;
+    }
+
     public void StartPlacement(int ID)
     {
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
-
+        
+        
+        if (database.objectData[selectObjectIndex].price > ResourceManager.Instance.Satisfaction)
+        {
+            return;
+        }        
+        
         if (selectObjectIndex < 0)
         {
             return;
@@ -50,6 +67,14 @@ public class ConstructionSystem : MonoBehaviour
     {
         if (_getMousePos.IsPointerOverUI())
             return;
+
+        if (ResourceManager.Instance.CanConstructionObject(database.objectData[selectObjectIndex].price))
+        {
+            ResourceManager.Instance.ReduceSatisfaction(database.objectData[selectObjectIndex].price);
+        }
+        else
+            return;
+        
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
 
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
@@ -62,6 +87,8 @@ public class ConstructionSystem : MonoBehaviour
         gameObj.transform.position = _grid.CellToWorld(gridPosition);
         placeGameObjects.Add(gameObj);
         GridData selectData = database.objectData[selectObjectIndex].ID  == 0 ? floorData : placeData;
+
+        DetectedObject(database.objectData[selectObjectIndex]);
         
         selectData.AddObjectAt(gridPosition,
             database.objectData[selectObjectIndex].size,
