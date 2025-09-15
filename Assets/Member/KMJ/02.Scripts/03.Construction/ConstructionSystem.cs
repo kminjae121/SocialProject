@@ -43,14 +43,14 @@ public class ConstructionSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
-       
-        
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
-
-        if (ResourceManager.Instance.Satisfaction >= database.objectData[selectObjectIndex].price)
-            return;
         
+        
+        if (database.objectData[selectObjectIndex].price > ResourceManager.Instance.Satisfaction)
+        {
+            return;
+        }        
         
         if (selectObjectIndex < 0)
         {
@@ -67,6 +67,14 @@ public class ConstructionSystem : MonoBehaviour
     {
         if (_getMousePos.IsPointerOverUI())
             return;
+
+        if (ResourceManager.Instance.CanConstructionObject(database.objectData[selectObjectIndex].price))
+        {
+            ResourceManager.Instance.ReduceSatisfaction(database.objectData[selectObjectIndex].price);
+        }
+        else
+            return;
+        
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
 
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
