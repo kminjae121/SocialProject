@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9e7880d899432a97dc63408a01b848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceChannel: {fileID: 11400000, guid: a4dbe9913607ace4e8ce703435754e59, type: 2}
+  resourceChannel: {fileID: 0}
   wattText: {fileID: 1179340549}
   wattUnits:
   - W

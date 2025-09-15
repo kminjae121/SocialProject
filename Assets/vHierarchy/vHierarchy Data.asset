@@ -16,4 +16,5 @@ MonoBehaviour:
     keys: []
     values: []
   bookmarks: []
-  bookmarkedScenePaths: []
+  bookmarkedScenePaths:
+  - Assets/Member/LCM/00.Scene/LCM.unity
