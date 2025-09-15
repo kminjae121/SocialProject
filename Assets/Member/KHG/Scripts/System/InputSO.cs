@@ -10,6 +10,9 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions
     public event Action<Vector2> OnMoveValueChangedEvent;
     public event Action<Vector2> OnMoveKeyPressedEvent;
 
+
+    public event Action<bool> OnSprintPressedEvent;
+
     public Vector2 MovementDirection { get; private set; }
 
     private void OnEnable()
@@ -36,5 +39,13 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions
 
         MovementDirection = movementInputVector;
         OnMoveValueChangedEvent?.Invoke(MovementDirection);
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnSprintPressedEvent?.Invoke(true);
+        if (context.canceled)
+            OnSprintPressedEvent?.Invoke(false);
     }
 }
