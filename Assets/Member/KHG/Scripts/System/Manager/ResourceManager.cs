@@ -1,12 +1,11 @@
 using Core.Events;
-using System;
 using UnityEngine;
 
 public class ResourceManager : MonoSingleton<ResourceManager>
 {
     [SerializeField] private GameEventChannelSO resourceChannel;
     public int Population { get; private set; }
-    [field: SerializeField] public int Satisfaction { get; private set; }
+    public int Satisfaction { get; private set; }
     public int Electricity { get; private set; } //Wh
 
     private void Awake()
@@ -18,29 +17,48 @@ public class ResourceManager : MonoSingleton<ResourceManager>
 
     private void HandlePopulation(PopulationEvent arg)
     {
-        Population = arg.Population;
+        if (arg.Population != -1) Population = arg.Population;
+        else Population += arg.AddedPopulation;
     }
 
     private void HandleSatisfaction(SatisfactionEvent arg)
     {
-        Satisfaction = arg.Satisfaction;
+        if (arg.Satisfaction != -1) Satisfaction = arg.Satisfaction;
+        else Satisfaction += arg.AddedSatisfaction;
+    }
+    private void HandleElectricity(ElectricityEvent arg)
+    {
+        print($"{arg.Electricity} == -1 : {arg.Electricity == -1}");
+        if (arg.Electricity == -1) Satisfaction += arg.AddedElectricity;
+        else Electricity = arg.Electricity;
     }
 
+    private void SendResource()
+    {
+        var evt = ResourceEvents.GetResourceEvent;
+        evt.Electricity = Electricity;
+        evt.Satisfaction = Satisfaction;
+        evt.Population = Population;
+
+        resourceChannel.RaiseEvent(evt);
+    }
     public void ReduceSatisfaction(int amount)
     {
         if (Satisfaction - amount < 0)
             return;
-        
+
         Satisfaction -= amount;
     }
 
     public bool CanConstructionObject(int amount)
     {
-        return Satisfaction - amount >= 0;   
+        return Satisfaction - amount >= 0;
     }
+}
 
-    private void HandleElectricity(ElectricityEvent arg)
-    {
-        Electricity = arg.Electricity;
-    }
+public enum ResourceType
+{
+    Electricity,
+    Population,
+    Satisfaction
 }

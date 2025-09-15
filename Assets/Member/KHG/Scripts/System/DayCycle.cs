@@ -40,7 +40,7 @@ public class DayCycle : MonoBehaviour
         Quaternion targetRot = Quaternion.Euler(angle, 0f, 0f);
         sun.rotation = targetRot;
 
-        print($"{Day}:{Hour}");
+        //print($"{Day}:{Hour}");
     }
 
     private void SetLight()

@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    [SerializeField] private GameEventChannelSO buildingChannel;
+    [SerializeField] private GameEventChannelSO resourceChannel;
 
     bool current;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            print("²¨Áü?:" + current);
-            TurnOffTheLight evt = LightEvent.lightEvent;
-            evt.isTurnOff = current!;
-            buildingChannel.RaiseEvent(evt);
-            current = !current;
+            var evt = ResourceEvents.ElectricityEvent;
+            evt.Electricity = -1;
+            evt.AddedElectricity = 5000;
+            resourceChannel.RaiseEvent(evt);
         }
     }
 }
