@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputSO", menuName = "SO/Input", order = 0)]
-public class InputSO : ScriptableObject, Controls.IPlayerActions
+public class InputSO : ScriptableObject, Controls.IPlayerActionsz
 {
     private Controls _controlls;
 
     public event Action<Vector2> OnMoveValueChangedEvent;
     public event Action<Vector2> OnMoveKeyPressedEvent;
 
-
+    public event Action<float> OnScrollEvent;
     public event Action<bool> OnSprintPressedEvent;
 
     public Vector2 MovementDirection { get; private set; }
@@ -48,4 +48,12 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions
         if (context.canceled)
             OnSprintPressedEvent?.Invoke(false);
     }
+
+    public void OnScroll(InputAction.CallbackContext context)
+    {
+        float scrollValue = context.ReadValue<Vector2>().y;
+        if (Mathf.Abs(scrollValue) > 0.01f)
+            OnScrollEvent?.Invoke(scrollValue);
+    }
+
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
@@ -7,28 +8,62 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintMultiplier = 3f;
 
+    [SerializeField] private float zoomSpeed = 2f;
+    [SerializeField] private float minOrthoSize = 2f;
+    [SerializeField] private float maxOrthoSize = 50f;
+    [SerializeField] private float minFov = 20f;
+    [SerializeField] private float maxFov = 100f;
+
     private bool _sprint;
     private Vector2 moveInput;
-
-    [SerializeField] private Vector3 moveableVector;
     private Vector3 _center;
+
+    [SerializeField] private CinemachineCamera _vcam;
+    [SerializeField] private Vector3 moveableVector;
+
+    private float _referenceOrthoSize;
+    private float _referenceFov;
 
     private void Awake()
     {
         input.OnMoveValueChangedEvent += HandleMoveCamera;
         input.OnSprintPressedEvent += HandleSprintControl;
+        input.OnScrollEvent += HandleScroll;
 
-        _center = transform.position; 
+        _center = transform.position;
+
+        if (_vcam != null)
+        {
+            var lens = _vcam.Lens;
+            _referenceOrthoSize = lens.OrthographicSize;
+            _referenceFov = lens.FieldOfView;
+        }
     }
 
     private void OnDestroy()
     {
         input.OnMoveValueChangedEvent -= HandleMoveCamera;
         input.OnSprintPressedEvent -= HandleSprintControl;
+        input.OnScrollEvent -= HandleScroll;
     }
 
     private void Update()
     {
+        if (_vcam == null) return;
+
+        var lens = _vcam.Lens;
+
+        // 줌 상태에 따른 스케일 보정
+        float zoomScale = 1f;
+        if (lens.Orthographic)
+            zoomScale = lens.OrthographicSize / _referenceOrthoSize;
+        else
+            zoomScale = lens.FieldOfView / _referenceFov;
+
+        float currentSpeed = moveSpeed * zoomScale;
+        if (_sprint)
+            currentSpeed *= sprintMultiplier;
+
         Vector3 forward = transform.forward;
         forward.y = 0f;
         forward.Normalize();
@@ -37,10 +72,8 @@ public class CameraController : MonoBehaviour
         right.y = 0f;
         right.Normalize();
 
-        float multiSpeedValue = _sprint ? sprintMultiplier : 1f;
-
         Vector3 moveDir = (right * moveInput.x) + (forward * moveInput.y);
-        Vector3 newPos = transform.position + moveDir * moveSpeed * Time.deltaTime * multiSpeedValue;
+        Vector3 newPos = transform.position + moveDir * currentSpeed * Time.deltaTime;
 
         Vector3 half = moveableVector * 0.5f;
         newPos.x = Mathf.Clamp(newPos.x, _center.x - half.x, _center.x + half.x);
@@ -58,6 +91,26 @@ public class CameraController : MonoBehaviour
     private void HandleMoveCamera(Vector2 vector)
     {
         moveInput = vector;
+    }
+
+    private void HandleScroll(float scrollValue)
+    {
+        if (_vcam == null) return;
+
+        var lens = _vcam.Lens;
+
+        if (lens.Orthographic)
+        {
+            lens.OrthographicSize -= scrollValue * zoomSpeed * Time.deltaTime;
+            lens.OrthographicSize = Mathf.Clamp(lens.OrthographicSize, minOrthoSize, maxOrthoSize);
+        }
+        else
+        {
+            lens.FieldOfView -= scrollValue * zoomSpeed * Time.deltaTime;
+            lens.FieldOfView = Mathf.Clamp(lens.FieldOfView, minFov, maxFov);
+        }
+
+        _vcam.Lens = lens;
     }
 
     private void OnDrawGizmosSelected()

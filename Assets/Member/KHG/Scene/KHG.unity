@@ -606,47 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingChannel: {fileID: 11400000, guid: 6bbac497009b81b4392ab40af6827ee0, type: 2}
-  structures:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  structures: []
 --- !u!4 &846825046
 Transform:
   m_ObjectHideFlags: 0
@@ -1158,8 +1118,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 5c85a5cc02dcaca4ba5a0581aeec5634, type: 2}
-  moveSpeed: 5
-  sprintMultiplier: 3
+  moveSpeed: 15
+  sprintMultiplier: 5
+  zoomSpeed: 50
+  minOrthoSize: 2
+  maxOrthoSize: 50
+  minFov: 20
+  maxFov: 100
+  _vcam: {fileID: 1297861690}
   moveableVector: {x: 318.7, y: 0, z: 493}
 --- !u!1 &1474855314
 GameObject:
