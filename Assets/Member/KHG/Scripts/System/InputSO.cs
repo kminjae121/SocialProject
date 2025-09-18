@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputSO", menuName = "SO/Input", order = 0)]
-public class InputSO : ScriptableObject, Controls.IPlayerActionsz
+public class InputSO : ScriptableObject, Controls.IPlayerActions
 {
     private Controls _controlls;
 
