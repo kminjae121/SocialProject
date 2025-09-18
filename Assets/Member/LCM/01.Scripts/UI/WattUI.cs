@@ -19,7 +19,7 @@ namespace Member.LCM._01.Scripts.UI
 
         [Header("Watt Conversion UI")] 
         [SerializeField] private Image wattConversionPanel;
-        [SerializeField] private float showWattConversionSpeed = 1f;
+        [SerializeField] private float showWattConversionTime = 1f;
         private bool _isOpen = false;
 
         private void Awake()
@@ -50,18 +50,18 @@ namespace Member.LCM._01.Scripts.UI
             
             Debug.Log(wattValue);
             
-            return $"현재 : {wattValue:F}{wattUnits[_index]}";
+            return $"{wattValue:F}{wattUnits[_index]}";
         }
 
         public void ShowConversionPanel()
         {
             if (_isOpen)
             {
-                wattConversionPanel.rectTransform.DOScale(Vector3.one, showWattConversionSpeed).SetEase(Ease.OutBack);
+                wattConversionPanel.rectTransform.DOScale(Vector3.one, showWattConversionTime).SetEase(Ease.OutBack);
             }
             else
             {
-                wattConversionPanel.rectTransform.DOScale(Vector3.zero, showWattConversionSpeed).SetEase(Ease.InBack);
+                wattConversionPanel.rectTransform.DOScale(Vector3.zero, showWattConversionTime).SetEase(Ease.InBack);
             }
             _isOpen = !_isOpen;
         }
