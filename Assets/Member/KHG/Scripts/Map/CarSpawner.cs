@@ -17,7 +17,7 @@ public class CarSpawner : MonoBehaviour
 
     private bool _canSpawn;
 
-    private void OnEnable()
+    private void Start()
     {
         SetSpawn(true);
     }

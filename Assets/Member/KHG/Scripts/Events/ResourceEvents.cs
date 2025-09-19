@@ -13,18 +13,42 @@ public class ElectricityEvent : GameEvent
 {
     public int Electricity; //-1이면 AddedElectricity를 사용
     public int AddedElectricity;
+
+    public ElectricityEvent Initialize(int SetValue = -1,int AddValue = 0)
+    {
+        Electricity = SetValue;
+        AddedElectricity = AddValue;
+
+        return this;
+    }
 }
 
 public class PopulationEvent : GameEvent
 {
     public int Population;
     public int AddedPopulation;
+
+    public PopulationEvent Initialize(int SetValue = -1, int AddValue = 0)
+    {
+        Population = SetValue;
+        AddedPopulation = AddValue;
+
+        return this;
+    }
 }
 
 public class SatisfactionEvent : GameEvent
 {
     public int Satisfaction;
     public int AddedSatisfaction;
+
+    public SatisfactionEvent Initialize(int SetValue = -1, int AddValue = 0)
+    {
+        Satisfaction = SetValue;
+        AddedSatisfaction = AddValue;
+
+        return this;
+    }
 }
 
 public class GetResourceEvent : GameEvent

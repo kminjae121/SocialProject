@@ -39,4 +39,10 @@ public class Car : MonoBehaviour, IPoolable
     {
         transform.position += transform.forward * _moveSpeed;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("CarRemove"))
+            Push();
+    }
 };

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DayCycle : MonoBehaviour
 {
-    [SerializeField] private float hoursPerSecond = 60f;
+    [SerializeField] private float hoursPerSecond = 0.1f;
     [SerializeField] private Transform sun;
 
     public int Day { get; private set; }
@@ -14,7 +14,7 @@ public class DayCycle : MonoBehaviour
     private void OnEnable()
     {
         _sunLight = sun.GetComponent<Light>();
-        Initialize(0, 6);
+        Initialize(0, 9);
     }
 
     public void Initialize(int d, int h)
