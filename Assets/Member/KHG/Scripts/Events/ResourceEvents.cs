@@ -11,7 +11,7 @@ public class ResourceEvents
 
 public class ElectricityEvent : GameEvent
 {
-    public int Electricity; //-1ÀÌ¸é AddedElectricity¸¦ »ç¿ë
+    public int Electricity; //-1ï¿½Ì¸ï¿½ AddedElectricityï¿½ï¿½ ï¿½ï¿½ï¿½
     public int AddedElectricity;
 
     public ElectricityEvent Initialize(int SetValue = -1,int AddValue = 0)
@@ -25,12 +25,14 @@ public class ElectricityEvent : GameEvent
 
 public class PopulationEvent : GameEvent
 {
-    public int Population;
+    public int CurrentPopulation;
+    public int MaxPopulation;
     public int AddedPopulation;
 
-    public PopulationEvent Initialize(int SetValue = -1, int AddValue = 0)
+    public PopulationEvent Initialize(int SetValue = -1, int MaxValue = -1, int AddValue = 0)
     {
-        Population = SetValue;
+        CurrentPopulation = SetValue;
+        MaxPopulation = MaxValue;
         AddedPopulation = AddValue;
 
         return this;
