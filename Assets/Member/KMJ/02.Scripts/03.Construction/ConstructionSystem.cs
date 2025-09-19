@@ -118,17 +118,24 @@ public class ConstructionSystem : MonoBehaviour
     {
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
-        
-        mouseIndicator.transform.position = mousePosition;
-        cellIndicator.transform.position = _grid.CellToWorld(gridPosition);
-        
-        if (selectObjectIndex < 0)
-           return;
-        
-        
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
 
-        previewRenderer.material.color = placementValidity ? Color.white : Color.red;
+        mouseIndicator.transform.position = mousePosition;
         
+        Vector3 cellWorldPos = _grid.CellToWorld(gridPosition);
+        
+        Renderer rend = cellIndicator.GetComponentInChildren<Renderer>();
+        if (rend != null)
+        {
+            float halfHeight = rend.bounds.size.y / 2f;
+            cellWorldPos.y += halfHeight;
+        }
+
+        cellIndicator.transform.position = cellWorldPos;
+
+        if (selectObjectIndex < 0)
+            return;
+
+        bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
+        previewRenderer.material.color = placementValidity ? Color.white : Color.red;
     }
 }

@@ -12,21 +12,29 @@ public abstract class Factory : ConstructionObject
     [SerializeField] private float _modifierValue;
 
     #region Property Field
-    protected float _reduceTime => _factorySO.ReduceTime;
-   
-    protected float _reduceValue => _factorySO.ReduceValue;
+    protected float _reduceTime
+    {
+        get => _factorySO.ReduceTime;
+        set => _factorySO.ReduceTime = value;
+    }
+
+    protected float _reduceValue
+    {
+        get => _factorySO.ReduceValue;
+        set => _factorySO.ReduceValue = value;
+    }
 
     protected float _increaseEnergy
     {
         get => _factorySO.IncreasingValue;
-
-        set
-        {
-            _increaseEnergy = value;
-        }
+        set => _factorySO.IncreasingValue = value;
     }
 
-    protected LayerMask _whatIsCanConstuction => _factorySO._whatIsCollect;
+    protected LayerMask _whatIsCanConstuction
+    {
+        get => _factorySO._whatIsCollect;
+        set => _factorySO._whatIsCollect = value;
+    }
 
     #endregion 
 
@@ -45,6 +53,7 @@ public abstract class Factory : ConstructionObject
         AutoMakingEnergies();
         AutoReduceEfficiency();
     }
+    
     private void OnDisable()
     {
         StopCoroutine(_makingCoroutine);
@@ -78,6 +87,12 @@ public abstract class Factory : ConstructionObject
 
     public void MinusIncreaseEnergy()
     {
+        if (_increaseEnergy <= 0)
+        {
+            _increaseEnergy = 0;
+            return;
+        }
+        
         _increaseEnergy -= _modifierValue;
     }
 
