@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private InputSO input;
+    [SerializeField] private Transform movePointTrm;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintMultiplier = 3f;
 
@@ -30,7 +31,7 @@ public class CameraController : MonoBehaviour
         input.OnSprintPressedEvent += HandleSprintControl;
         input.OnScrollEvent += HandleScroll;
 
-        _center = transform.position;
+        _center = movePointTrm.position;
 
         if (_vcam != null)
         {
@@ -116,6 +117,6 @@ public class CameraController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(Application.isPlaying ? _center : transform.position, moveableVector);
+        Gizmos.DrawWireCube(Application.isPlaying ? _center : movePointTrm.position, moveableVector);
     }
 }

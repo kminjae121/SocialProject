@@ -1,5 +1,6 @@
 using Core.Events;
 using UnityEngine;
+using Utility.Unity.Common;
 
 public class ResourceManager : MonoSingleton<ResourceManager>
 {
@@ -8,11 +9,21 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     public int Satisfaction { get; private set; }
     public int Electricity { get; private set; } //Wh
 
+    private EnergyManager _energyManager;
+    private DelayInvoker<int> resourceRefresher;
+
     private void Awake()
     {
         resourceChannel.AddListener<PopulationEvent>(HandlePopulation);
         resourceChannel.AddListener<SatisfactionEvent>(HandleSatisfaction);
         resourceChannel.AddListener<ElectricityEvent>(HandleElectricity);
+    }
+
+    private void Start()
+    {
+        _energyManager = EnergyManager.Instance;
+
+        resourceRefresher = new(RefreshResource, (int)_energyManager.currentCityEnergy, 3);
     }
 
     private void HandlePopulation(PopulationEvent arg)
@@ -41,6 +52,17 @@ public class ResourceManager : MonoSingleton<ResourceManager>
         evt.Population = Population;
 
         resourceChannel.RaiseEvent(evt);
+    }
+
+    private void RefreshResource(int value)
+    {
+        print($"before energy : {Electricity}, after energy : {value}");
+        Electricity = value;
+        SendResource();
+    }
+    private void Update()
+    {
+        resourceRefresher.Tick();
     }
     public void ReduceSatisfaction(int amount)
     {
