@@ -7,6 +7,8 @@ namespace KHG.Scripts.Buildings
     {
         [SerializeField] private List<MeshRenderer> windows;
         [SerializeField] private BuildingSO currentBuilding;
+
+
         public override void SetActive(bool value)
         {
             foreach (var win in windows)
