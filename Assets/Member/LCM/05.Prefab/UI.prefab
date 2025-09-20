@@ -1494,6 +1494,7 @@ GameObject:
   - component: {fileID: 4747897348834279334}
   - component: {fileID: 467318591282418341}
   - component: {fileID: 4050307435874957704}
+  - component: {fileID: 5277188142196951286}
   m_Layer: 5
   m_Name: PopulationPanel
   m_TagString: Untagged
@@ -1575,6 +1576,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
+--- !u!114 &5277188142196951286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5048971330934273277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9afc8245e1cd94e8c97edc3b6294a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
+  populationText: {fileID: 6534278249292973792}
 --- !u!1 &5260477098763158597
 GameObject:
   m_ObjectHideFlags: 0

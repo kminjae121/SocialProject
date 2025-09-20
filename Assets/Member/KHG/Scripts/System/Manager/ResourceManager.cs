@@ -28,7 +28,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
 
     private void HandlePopulation(PopulationEvent arg)
     {
-        if (arg.Population != -1) Population = arg.Population;
+        if (arg.CurrentPopulation != -1) Population = arg.CurrentPopulation;
         else Population += arg.AddedPopulation;
     }
 

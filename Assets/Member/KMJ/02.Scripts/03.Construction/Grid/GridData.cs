@@ -2,9 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CantPlacePoint
+{
+    Road,
+    Water,
+    Mountain,
+}
 public class GridData : MonoBehaviour
 {
     private Dictionary<Vector3Int, PlacementData> placeObjects = new();
+
+    private Dictionary<CantPlacePoint, Vector3Int> cantPlaceObjecs = new();
+
+    public void SetCantPlaceObjectAt(Vector3Int position, CantPlacePoint placeEnum)
+    {
+        cantPlaceObjecs.Add(placeEnum, position);
+    }
 
     public void AddObjectAt(Vector3Int gridPosition, Vector2Int objectSize,
         int ID, int placeObjectIdx)
@@ -35,14 +48,19 @@ public class GridData : MonoBehaviour
         return returnVal;
     }
     
-    public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2Int objectSize)
+    public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2Int objectSize, string cantPosition = "")
     {
         List<Vector3Int> positionToOccupy = CalculatePosition(gridPosition, objectSize);
         foreach (var pos in positionToOccupy)
         {
             if (placeObjects.ContainsKey(pos))
                 return false;
+
+            if (cantPlaceObjecs.ContainsValue(pos))
+                return false;
+
         }
+        
 
         return true;
     }
