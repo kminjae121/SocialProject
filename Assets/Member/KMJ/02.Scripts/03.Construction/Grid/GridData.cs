@@ -2,11 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CantPlacePoint
+{
+    Road,
+    Water,
+    Mountain,
+}
 public class GridData : MonoBehaviour
 {
     private Dictionary<Vector3Int, PlacementData> placeObjects = new();
 
-    private Dictionary<string, Vector3Int> cantPlaceObjecs = new();
+    private Dictionary<CantPlacePoint, Vector3Int> cantPlaceObjecs = new();
+
+    public void SetCantPlaceObjectAt(Vector3Int position, CantPlacePoint placeEnum)
+    {
+        cantPlaceObjecs.Add(placeEnum, position);
+    }
 
     public void AddObjectAt(Vector3Int gridPosition, Vector2Int objectSize,
         int ID, int placeObjectIdx)
