@@ -6,6 +6,8 @@ public class GridData : MonoBehaviour
 {
     private Dictionary<Vector3Int, PlacementData> placeObjects = new();
 
+    private Dictionary<string, Vector3Int> cantPlaceObjecs = new();
+
     public void AddObjectAt(Vector3Int gridPosition, Vector2Int objectSize,
         int ID, int placeObjectIdx)
     {
@@ -35,14 +37,19 @@ public class GridData : MonoBehaviour
         return returnVal;
     }
     
-    public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2Int objectSize)
+    public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2Int objectSize, string cantPosition = "")
     {
         List<Vector3Int> positionToOccupy = CalculatePosition(gridPosition, objectSize);
         foreach (var pos in positionToOccupy)
         {
             if (placeObjects.ContainsKey(pos))
                 return false;
+
+            if (cantPlaceObjecs.ContainsValue(pos))
+                return false;
+
         }
+        
 
         return true;
     }
