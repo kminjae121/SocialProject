@@ -419,6 +419,7 @@ GameObject:
   - component: {fileID: 873376016}
   - component: {fileID: 873376015}
   - component: {fileID: 873376019}
+  - component: {fileID: 873376020}
   m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
@@ -528,6 +529,18 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &873376020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873376014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f4f37d3bea5b04ab3df99c036b054b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928789303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,6 +1130,7 @@ GameObject:
   - component: {fileID: 1860231378}
   - component: {fileID: 1860231379}
   - component: {fileID: 1860231380}
+  - component: {fileID: 1860231381}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1173,6 +1187,22 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1860231381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860231377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc1d686be624674bbac51cfaea83bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gridData: {fileID: 0}
+  _waterArea: []
+  _mountainArea: []
+  _roadArea: []
 --- !u!1 &2036068576
 GameObject:
   m_ObjectHideFlags: 0
