@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Core.Events;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace KHG.Scripts.Buildings
@@ -7,6 +8,7 @@ namespace KHG.Scripts.Buildings
     {
         [SerializeField] private List<MeshRenderer> windows;
         [SerializeField] private BuildingSO currentBuilding;
+        [SerializeField] private GameEventChannelSO resourceChannel;
 
 
         public override void SetActive(bool value)
@@ -21,6 +23,15 @@ namespace KHG.Scripts.Buildings
 
         public void StopContruction()
         {
+        }
+
+        public void AddBuildingPoplulation()
+        {
+            var evt = ResourceEvents.PopulationEvent;
+            evt.CurrentPopulation = -1;
+            evt.AddedPopulation = currentBuilding.Population;
+
+            resourceChannel.RaiseEvent(evt);
         }
     }
 }
