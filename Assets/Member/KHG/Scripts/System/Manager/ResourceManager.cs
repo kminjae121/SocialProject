@@ -7,7 +7,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     [SerializeField] private GameEventChannelSO resourceChannel;
     public int Population { get; private set; }
     public int Satisfaction { get; private set; }
-    public int Electricity { get; private set; } //Wh
+    public int Electricity { get; private set; }
 
     private EnergyManager _energyManager;
     private DelayInvoker<int> resourceRefresher;
@@ -30,18 +30,21 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     {
         if (arg.CurrentPopulation != -1) Population = arg.CurrentPopulation;
         else Population += arg.AddedPopulation;
+        SendResource();
     }
 
     private void HandleSatisfaction(SatisfactionEvent arg)
     {
         if (arg.Satisfaction != -1) Satisfaction = arg.Satisfaction;
         else Satisfaction += arg.AddedSatisfaction;
+        SendResource();
     }
     private void HandleElectricity(ElectricityEvent arg)
     {
         print($"{arg.Electricity} == -1 : {arg.Electricity == -1}");
-        if (arg.Electricity == -1) Satisfaction += arg.AddedElectricity;
+        if (arg.Electricity == -1) Electricity += arg.AddedElectricity;
         else Electricity = arg.Electricity;
+        SendResource();
     }
 
     private void SendResource()
