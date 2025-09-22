@@ -14,17 +14,17 @@ namespace Member.LCM._01.Scripts.UI
 
         private void Awake()
         {
-            resourceChannel.AddListener<PopulationEvent>(HandleChangePopulation);
+            resourceChannel.AddListener<GetResourceEvent>(HandleChangePopulation);
         }
 
         private void OnDestroy()
         {
-            resourceChannel.RemoveListener<PopulationEvent>(HandleChangePopulation);
+            resourceChannel.RemoveListener<GetResourceEvent>(HandleChangePopulation);
         }
 
-        private void HandleChangePopulation(PopulationEvent evt)
+        private void HandleChangePopulation(GetResourceEvent evt)
         {
-            populationText.SetText($"인구수 : {evt.CurrentPopulation}명 / {evt.MaxPopulation}명");
+            populationText.SetText($"인구수 : {evt.Population}명 / {evt.Population}명");
         }
     }
 }

@@ -24,16 +24,16 @@ namespace Member.LCM._01.Scripts.UI
 
         private void Awake()
         {
-            resourceChannel.AddListener<ElectricityEvent>(HandleChangeElectricity);
+            resourceChannel.AddListener<GetResourceEvent>(HandleChangeElectricity);
             wattConversionPanel.rectTransform.localScale = Vector3.zero;
         }
 
         private void OnDestroy()
         {
-            resourceChannel.RemoveListener<ElectricityEvent>(HandleChangeElectricity);
+            resourceChannel.RemoveListener<GetResourceEvent>(HandleChangeElectricity);
         }
 
-        private void HandleChangeElectricity(ElectricityEvent evt)
+        private void HandleChangeElectricity(GetResourceEvent evt)
         {
             wattText.SetText($"{UnitConversion(evt.Electricity)}");
         }

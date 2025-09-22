@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 6293380399481105636}
   - component: {fileID: 6717502534505862027}
   - component: {fileID: 4077555734763627948}
+  - component: {fileID: 3532238564753225487}
   m_Layer: 5
   m_Name: WeatherPanel
   m_TagString: Untagged
@@ -229,6 +230,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
+--- !u!114 &3532238564753225487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107784377144089181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0709bd92dc14e4d4bb5c839a4342cedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347237915261212321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1296,7 @@ GameObject:
   - component: {fileID: 6064749723784912190}
   - component: {fileID: 779000846486907165}
   - component: {fileID: 8662032642365221406}
+  - component: {fileID: 1868545801550654338}
   m_Layer: 5
   m_Name: TimePanel
   m_TagString: Untagged
@@ -1377,6 +1391,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &1868545801550654338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3312233806609511087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bf54ebc325c60449dba3f2c1146f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3908915105773484954
 GameObject:
   m_ObjectHideFlags: 0
