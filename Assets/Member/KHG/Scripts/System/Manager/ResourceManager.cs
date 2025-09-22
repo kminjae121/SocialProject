@@ -6,7 +6,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
 {
     [SerializeField] private GameEventChannelSO resourceChannel;
     public int Population { get; private set; }
-    public int Satisfaction { get; private set; }
+    [field: SerializeField] public int Satisfaction { get; private set; }
     public int Electricity { get; private set; } //Wh
 
     private EnergyManager _energyManager;
