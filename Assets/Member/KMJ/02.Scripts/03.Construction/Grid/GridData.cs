@@ -14,9 +14,12 @@ public class GridData : MonoBehaviour
 
     private Dictionary<CantPlacePoint, Vector3Int> cantPlaceObjecs = new();
 
-    public void SetCantPlaceObjectAt(Vector3Int position, CantPlacePoint placeEnum)
+    public void SetCantPlaceObjectAt(List<Vector3Int> position, CantPlacePoint placeEnum)
     {
-        cantPlaceObjecs.Add(placeEnum, position);
+        position.ForEach(pos =>
+        {
+            cantPlaceObjecs.Add(placeEnum, pos);
+        });
     }
 
     public void AddObjectAt(Vector3Int gridPosition, Vector2Int objectSize,
