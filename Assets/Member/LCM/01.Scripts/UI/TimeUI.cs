@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class TimeUI : MonoBehaviour
+namespace Member.LCM._01.Scripts.UI
 {
+    public class TimeUI : MonoBehaviour
+    {
     
+    }
 }
