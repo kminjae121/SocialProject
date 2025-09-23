@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using VHierarchy.Libs;
 
 public enum CantPlacePoint
 {
@@ -19,6 +21,23 @@ public class GridData : MonoBehaviour
         position.ForEach(pos =>
         {
             cantPlaceObjecs.Add(placeEnum, pos);
+        });
+    }
+    
+    public bool TryGetPlacementData(Vector3Int position, out PlacementData data)
+    {
+        return placeObjects.TryGetValue(position, out data);
+    }
+
+
+    public void DestroyObject(Vector3Int position)
+    {
+        placeObjects.Keys.ToList().ForEach(pos =>
+        {
+            if (pos == position)
+            {
+                placeObjects.Remove(position);
+            }
         });
     }
 
