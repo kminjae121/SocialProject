@@ -5,32 +5,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using Member.LCM._01.Scripts.UI.Text;
-using Utility.Dependencies;
-using Utility.ObjectPool.Runtime;
 
 namespace Member.LCM._01.Scripts.UI
 {
     public class WattUI : MonoBehaviour
     {
-        [Header("Event")]
-        [SerializeField] private GameEventChannelSO resourceChannel;
+        [Header("Event")] [SerializeField] private GameEventChannelSO resourceChannel;
 
-        [Header("Watt Info UI")] 
-        [SerializeField] private TextMeshProUGUI wattText;
+        [Header("Watt Info UI")] [SerializeField]
+        private TextMeshProUGUI wattText;
+
         [SerializeField] private List<string> wattUnits;
-        private int _index = 0;
+        private int _index;
 
-        [Header("Watt Conversion UI")] 
-        [SerializeField] private Image wattConversionPanel;
+        [Header("Watt Conversion UI")] [SerializeField]
+        private Image wattConversionPanel;
+
         [SerializeField] private float showWattConversionTime = 1f;
         [SerializeField] private List<Transform> wattPopupTextPos;
-        private bool _isOpen = false;
-        private int _previousWattAmount = 0;
-        
-        [Header("Pool")]
-        [Inject] private PoolManagerMono _poolManager;
+        [SerializeField] private GameObject popupText;
+        private bool _isOpen;
+        private int _previousWattAmount;
 
-        [SerializeField] private PoolingItemSO popupText;
 
         private void Awake()
         {
@@ -52,30 +48,19 @@ namespace Member.LCM._01.Scripts.UI
         {
             if (_previousWattAmount > wattAmount)
             {
-                _poolManager.Pop<PopupText>(popupText).Initialize(
-                    wattPopupTextPos[2], wattPopupTextPos[3], $"-{_previousWattAmount - wattAmount}"
-                    , Color.red); 
+                Instantiate(popupText, transform).GetComponent<PopupText>().Initialize(
+                    wattPopupTextPos[2], wattPopupTextPos[3], $"-{WattConversion(_previousWattAmount - wattAmount)}"
+                    , Color.red);
             }
             else
             {
-                _poolManager.Pop<PopupText>(popupText).Initialize(
-                    wattPopupTextPos[0], wattPopupTextPos[1], $"{wattAmount - _previousWattAmount}"
+                Instantiate(popupText, transform).GetComponent<PopupText>().Initialize(
+                    wattPopupTextPos[0], wattPopupTextPos[1], $"+{WattConversion(wattAmount - _previousWattAmount)}"
                     , Color.green);
             }
-            
+
             _previousWattAmount = wattAmount;
-            
-            _index = 0;
-            float wattValue = wattAmount;
-            while (wattValue / 1000f >= 1)
-            {
-                wattValue /= 1000f;
-                _index++;
-            }
-            
-            Debug.Log(wattValue);
-            
-            return $"{wattValue:F}{wattUnits[_index]}";
+            return $"{WattConversion(wattAmount)}";
         }
 
         public void ShowConversionPanel()
@@ -89,6 +74,19 @@ namespace Member.LCM._01.Scripts.UI
             {
                 wattConversionPanel.rectTransform.DOScale(Vector3.zero, showWattConversionTime).SetEase(Ease.InBack);
             }
+        }
+
+        private string WattConversion(int wattAmount)
+        {
+            _index = 0;
+            float wattValue = wattAmount;
+            while (wattValue / 1000f >= 1)
+            {
+                wattValue /= 1000f;
+                _index++;
+            }
+
+            return $"{wattValue:F}{wattUnits[_index]}";
         }
     }
 }

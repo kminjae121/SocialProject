@@ -1,27 +1,15 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using Utility.ObjectPool.Runtime;
 
 namespace Member.LCM._01.Scripts.UI.Text
 {
-    public class PopupText : MonoBehaviour, IPoolable
+    public class PopupText : MonoBehaviour
     {
-        [Header("Pool")]
-        [field: SerializeField] public PoolingItemSO PoolingType { get; private set; }
-        public GameObject GameObject => gameObject;
-        
-        private Pool _myPool;
-
         [Header("Popup Setting")] 
         
         [SerializeField] private TextMeshProUGUI popupText;
         [SerializeField] private float popupDuration;
-
-        public void SetUpPool(Pool pool)
-        {
-            _myPool = pool;
-        }
 
         public void Initialize(Transform startTransform, Transform endTransform, string text, Color color)
         {
@@ -31,13 +19,8 @@ namespace Member.LCM._01.Scripts.UI.Text
             
             transform.DOMoveY(endTransform.position.y, popupDuration)
                 .OnComplete(() => {
-                    _myPool.Push(this);
+                    Destroy(gameObject);
                 });
-        }
-
-        public void ResetItem()
-        {
-            transform.position = Vector3.zero;
         }
     }
 }
