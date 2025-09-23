@@ -15,17 +15,16 @@ public class ConstructionSystem : MonoBehaviour
 
     [SerializeField] private GameObject gridVisualization;
 
-    private GridData floorData, placeData;
+    [SerializeField] private GridData placeData;
 
     private Renderer previewRenderer;
 
     private List<GameObject> placeGameObjects = new();
+    [SerializeField] private LayerMask _whatIsStructor;
     
     private void Start()
     {
         StopPlaceMent();
-        floorData = new();
-        placeData = new();
 
         previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
@@ -63,6 +62,40 @@ public class ConstructionSystem : MonoBehaviour
         _getMousePos.OnExit += StopPlaceMent;
     }
 
+    public void DestroyPlacement()
+    {
+        _getMousePos.OnClicked -= PlaceStructure;
+        _getMousePos.OnExit -= StopPlaceMent;
+
+        _getMousePos.OnClicked += DestoryStructure;
+        _getMousePos.OnExit += StopDestory;
+    }
+
+    private void DestoryStructure()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (((1 << hit.collider.gameObject.layer) & _whatIsStructor) != 0)
+            {
+                Vector3Int gridPosition = _grid.WorldToCell(hit.collider.gameObject.transform.position);
+                placeData.DestroyObject(gridPosition);
+                hit.collider.gameObject.SetActive(false);
+            }
+        }
+        
+        
+    }
+
+    private void StopDestory()
+    {
+        _getMousePos.OnClicked -= DestoryStructure;
+        _getMousePos.OnExit -= StopPlaceMent;
+    }
+
     private void PlaceStructure()
     {
         if (_getMousePos.IsPointerOverUI())
@@ -86,11 +119,11 @@ public class ConstructionSystem : MonoBehaviour
         GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab);
         gameObj.transform.position = _grid.CellToWorld(gridPosition);
         placeGameObjects.Add(gameObj);
-        GridData selectData = database.objectData[selectObjectIndex].ID  == 0 ? floorData : placeData;
 
         DetectedObject(database.objectData[selectObjectIndex]);
         
-        selectData.AddObjectAt(gridPosition,
+        
+        placeData.AddObjectAt(gridPosition,
             database.objectData[selectObjectIndex].size,
             database.objectData[selectObjectIndex].ID,
             placeGameObjects.Count - 1);
@@ -98,11 +131,9 @@ public class ConstructionSystem : MonoBehaviour
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectObjectIndex)
     {
-        GridData selectData = database.objectData[selectObjectIndex].ID  == 0 ? floorData : placeData;
+        GridData selectData = placeData;
 
         return selectData.CanPlaceObjectAt(gridPosition, database.objectData[selectObjectIndex].size);
-        
-
     }
 
     private void StopPlaceMent()
