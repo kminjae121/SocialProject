@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf2d2f9779ef5a49b25ad889713e870, type: 3}
-  m_Name: PoolManager
+  m_Script: {fileID: 11500000, guid: 8e147d075f948fa4d99051b72c2f63ad, type: 3}
+  m_Name: PopupText
   m_EditorClassIdentifier: 
-  itemList:
-  - {fileID: 11400000, guid: b7167ee6141098243bebfad7dd246b7c, type: 2}
-  - {fileID: 11400000, guid: d045d9f49d80f45419d7675159397b6c, type: 2}
+  poolingName: PopupText
+  prefab: {fileID: 2645528186610537234, guid: f5c5104aefe2cae47ab5cb77b4a78512, type: 3}
+  initCount: 5

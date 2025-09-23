@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Member.LCM._01.Scripts.UI.Text;
+using Utility.Dependencies;
+using Utility.ObjectPool.Runtime;
 
 namespace Member.LCM._01.Scripts.UI
 {
@@ -20,7 +23,14 @@ namespace Member.LCM._01.Scripts.UI
         [Header("Watt Conversion UI")] 
         [SerializeField] private Image wattConversionPanel;
         [SerializeField] private float showWattConversionTime = 1f;
+        [SerializeField] private List<Transform> wattPopupTextPos;
         private bool _isOpen = false;
+        private int _previousWattAmount = 0;
+        
+        [Header("Pool")]
+        [Inject] private PoolManagerMono _poolManager;
+
+        [SerializeField] private PoolingItemSO popupText;
 
         private void Awake()
         {
@@ -40,6 +50,21 @@ namespace Member.LCM._01.Scripts.UI
 
         private string UnitConversion(int wattAmount)
         {
+            if (_previousWattAmount > wattAmount)
+            {
+                _poolManager.Pop<PopupText>(popupText).Initialize(
+                    wattPopupTextPos[2], wattPopupTextPos[3], $"-{_previousWattAmount - wattAmount}"
+                    , Color.red); 
+            }
+            else
+            {
+                _poolManager.Pop<PopupText>(popupText).Initialize(
+                    wattPopupTextPos[0], wattPopupTextPos[1], $"{wattAmount - _previousWattAmount}"
+                    , Color.green);
+            }
+            
+            _previousWattAmount = wattAmount;
+            
             _index = 0;
             float wattValue = wattAmount;
             while (wattValue / 1000f >= 1)
@@ -55,6 +80,7 @@ namespace Member.LCM._01.Scripts.UI
 
         public void ShowConversionPanel()
         {
+            _isOpen = !_isOpen;
             if (_isOpen)
             {
                 wattConversionPanel.rectTransform.DOScale(Vector3.one, showWattConversionTime).SetEase(Ease.OutBack);
@@ -63,7 +89,6 @@ namespace Member.LCM._01.Scripts.UI
             {
                 wattConversionPanel.rectTransform.DOScale(Vector3.zero, showWattConversionTime).SetEase(Ease.InBack);
             }
-            _isOpen = !_isOpen;
         }
     }
 }
