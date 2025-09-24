@@ -14,6 +14,15 @@ public class EnergyManager : MonoSingleton<EnergyManager>
         base.Awake();
     }
 
+    private void Start()
+    {
+        ResetEnergy();
+    }
+
+    private void ResetEnergy()
+    {
+        currentCityEnergy = 0;
+    }
     private void LightOff()
     {
         _lightChannel.RaiseEvent(LightEvent.lightEvent.Initialize(true));
