@@ -33,7 +33,7 @@ public class GetMousePos : MonoBehaviour
         mousePos.z = _sceneCam.nearClipPlane;
         Ray ray = _sceneCam.ScreenPointToRay(mousePos);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, whatIsGround))
+        if (Physics.Raycast(ray, out hit,99999999999, whatIsGround))
         {
             lastPosition = hit.point;
         }
