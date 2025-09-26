@@ -118,6 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6486476010003735164}
   - component: {fileID: -3671758950685521792}
+  - component: {fileID: 8646880533796450365}
   m_Layer: 8
   m_Name: TestOBJ
   m_TagString: Untagged
@@ -155,3 +156,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factorySO: {fileID: 11400000, guid: e9a09bb352227044d924c65322fe2c31, type: 2}
   _modifierValue: 0
+--- !u!114 &8646880533796450365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5772780409800997494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc94556830f8d4f449a82601d96abf01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisBuildingSO: {fileID: 11400000, guid: f34efa1422f8e6f4a87919626e06ad16, type: 2}
+  objMeshRenderer: {fileID: 3125922105058594348}
+  buildType: 0
+  buildingCompo: {fileID: 0}

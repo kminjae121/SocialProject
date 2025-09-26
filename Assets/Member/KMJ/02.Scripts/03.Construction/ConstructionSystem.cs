@@ -58,6 +58,13 @@ public class ConstructionSystem : MonoBehaviour
         
         gridVisualization.SetActive(true);
         cellIndicator.SetActive(true);
+        
+        GameObject cellChanger = Instantiate(database.objectData[selectObjectIndex].visualPrefab);
+        
+        cellIndicator = cellChanger;
+        
+        previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
+        
         _getMousePos.OnClicked += PlaceStructure;
         _getMousePos.OnExit += StopPlaceMent;
     }
@@ -120,6 +127,7 @@ public class ConstructionSystem : MonoBehaviour
         gameObj.transform.position = _grid.CellToWorld(gridPosition);
         placeGameObjects.Add(gameObj);
 
+        gameObj.GetComponent<ConstructionObject>().StartConstructionObject();
         DetectedObject(database.objectData[selectObjectIndex]);
         
         

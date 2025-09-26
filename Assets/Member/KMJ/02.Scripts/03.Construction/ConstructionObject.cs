@@ -1,17 +1,45 @@
+using System;
+using System.Collections;
+using KHG.Scripts.Buildings;
 using UnityEngine;
 
-public abstract class ConstructionObject : MonoBehaviour, IConstruction
+public enum BuildingType
 {
-    public virtual void StartConstruction()
+    Factory,
+    Building
+}
+public class ConstructionObject : MonoBehaviour
+{
+    [SerializeField] private BuildingSO thisBuildingSO;
+
+    [SerializeField] private MeshRenderer objMeshRenderer;
+
+    [SerializeField] private BuildingType buildType;
+
+    [SerializeField] private Building buildingCompo;
+
+    private void Start()
     {
+        objMeshRenderer.enabled = false;
     }
 
-    public virtual void StopContruction()
+    public void StartConstructionObject()
     {
+        StartCoroutine(BuildWait(thisBuildingSO.BuildTime));
     }
 
-    public void DestroyThisObject()
+    public void EndConstructionObject()
     {
-        gameObject.SetActive(false);
+        if (buildType == BuildingType.Building)
+        {
+            buildingCompo.AddBuildingPoplulation();    
+        }
+    }
+
+    private IEnumerator BuildWait(float waitingTimte)
+    {
+        yield return new WaitForSeconds(waitingTimte);
+        objMeshRenderer.enabled = true;
+        EndConstructionObject();
     }
 }

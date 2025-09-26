@@ -3,7 +3,7 @@ using System.Collections;
 using System.Runtime.Serialization.Json;
 using UnityEngine;
 
-public abstract class Factory : ConstructionObject
+public abstract class Factory : MonoBehaviour
 {
     [Header("FactorySO")]
     [SerializeField] private FactorySO _factorySO;
@@ -61,17 +61,7 @@ public abstract class Factory : ConstructionObject
             return;
         StopCoroutine(_reduceCoroutine);
     }
-
-    public override void StartConstruction()
-    {
-
-    }
-
-    public override void StopContruction()
-    {
-
-    }
-
+    
     public void PlusIncreaseEnergy()
     {
         if (_increaseEnergy == _factorySO.IncreasingValue) return;

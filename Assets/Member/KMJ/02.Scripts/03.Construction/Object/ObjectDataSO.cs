@@ -19,6 +19,8 @@ public class ObjectData
     public Vector2Int size { get; private set; } = Vector2Int.zero;
     [field: SerializeField]
     public GameObject prefab { get; private set; }
+    [field: SerializeField]
+    public GameObject visualPrefab { get; private set; }
     
     [field: SerializeField] public Transform trm { get; private set; }
     
