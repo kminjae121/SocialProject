@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace KHG.Scripts.Managers
 {
@@ -19,6 +20,11 @@ namespace KHG.Scripts.Managers
             buildingChannel.AddListener<TurnOffTheLight>(ManageLight);
         }
 
+        private void OnDestroy()
+        {
+            buildingChannel.RemoveListener<TurnOffTheLight>(ManageLight);
+        }
+
         private void ManageLight(TurnOffTheLight light)
         {
             StartCoroutine(ChangeLight(light.isTurnOff == false));
@@ -29,7 +35,18 @@ namespace KHG.Scripts.Managers
             foreach (var structure in structures)
             {
                 structure.SetActive(value);
-                yield return new WaitForSeconds(0.001f);
+                yield return null;
+            }
+        }
+
+
+        bool va;
+        private void Update()
+        {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                StartCoroutine(ChangeLight(va));
+                va = !va;
             }
         }
     }

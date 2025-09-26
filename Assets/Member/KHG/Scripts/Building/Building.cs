@@ -10,11 +10,25 @@ namespace KHG.Scripts.Buildings
         [SerializeField] private BuildingSO currentBuilding;
         [SerializeField] private GameEventChannelSO resourceChannel;
 
+        private MeshRenderer _renderer;
 
+        private void Awake()
+        {
+            _renderer = GetComponent<MeshRenderer>();
+        }
         public override void SetActive(bool value)
         {
             foreach (var win in windows)
                 win.enabled = value;
+        }
+
+        public void SetEnable(bool value)
+        {
+            foreach (Transform child in transform)
+                if(child.TryGetComponent(out MeshRenderer renderer) == true)
+                    renderer.enabled = value;
+            if(_renderer != null)
+                _renderer.enabled = value;
         }
 
         public void StartConstruction()

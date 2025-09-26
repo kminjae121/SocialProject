@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7143804649093293165}
   - component: {fileID: 520046122178702342}
   - component: {fileID: 2863114126158927286}
+  - component: {fileID: -6195123448785964745}
   m_Layer: 5
   m_Name: PopupText
   m_TagString: Untagged
@@ -34,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125, y: 338}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &520046122178702342
@@ -136,3 +137,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &-6195123448785964745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2645528186610537234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0529db28c48b7469d1802578d63bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PoolingType>k__BackingField: {fileID: 11400000, guid: d045d9f49d80f45419d7675159397b6c, type: 2}
+  popupText: {fileID: 2863114126158927286}
+  popupDuration: 1

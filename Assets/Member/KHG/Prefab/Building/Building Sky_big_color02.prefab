@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3802451682147302829}
   - {fileID: 5202106372049571171}
@@ -119,6 +119,7 @@ MonoBehaviour:
   - {fileID: 1584807754013374265}
   - {fileID: 2092305038151909462}
   currentBuilding: {fileID: 11400000, guid: 42d5546031a2e1940aaa1f7d7192642a, type: 2}
+  resourceChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
 --- !u!1 &90788565457722107
 GameObject:
   m_ObjectHideFlags: 0
