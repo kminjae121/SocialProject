@@ -4,8 +4,13 @@ using UnityEngine;
 public class MapEvents
 {
     public static readonly GridMaterialEvent GridMaterialEvent = new();
+    public static readonly WeatherChangeEvent WeatherChangeEvent = new();
 }
 public class GridMaterialEvent : GameEvent
 {
     public bool Enabled;
+}
+public class WeatherChangeEvent : GameEvent
+{
+    public Weather Weather;
 }
