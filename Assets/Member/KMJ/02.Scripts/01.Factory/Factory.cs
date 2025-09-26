@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Runtime.Serialization.Json;
+using Core.Events;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public abstract class Factory : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public abstract class Factory : MonoBehaviour
     [Header("ModifierValue")]
     [SerializeField] private float _modifierValue;
 
+    [SerializeField] protected GameEventChannelSO _weatherEventChannel;
     #region Property Field
     protected float _reduceTime
     {
@@ -47,13 +50,21 @@ public abstract class Factory : MonoBehaviour
     protected Coroutine _reduceCoroutine;
     protected Coroutine _makingCoroutine;
 
+    
 
     private void OnEnable()
     {
         AutoMakingEnergies();
         AutoReduceEfficiency();
+        _weatherEventChannel.AddListener<WeatherChangeEvent>(WeatherCondition);
     }
     
+    protected virtual void WeatherCondition(WeatherChangeEvent evt)
+    {
+        
+    }
+    
+
     private void OnDisable()
     {
         StopCoroutine(_makingCoroutine);
