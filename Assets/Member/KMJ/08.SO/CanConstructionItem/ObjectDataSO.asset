@@ -37,3 +37,15 @@ MonoBehaviour:
     <DetectedLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 0
+  - <Name>k__BackingField: SunFactory
+    <ID>k__BackingField: 3
+    <size>k__BackingField: {x: 2, y: 2}
+    <prefab>k__BackingField: {fileID: 5281784129647087864, guid: c1dc8cb058b61194bac0edc7932c342d, type: 3}
+    <visualPrefab>k__BackingField: {fileID: 5281784129647087864, guid: d3040b512947d2d469812df70450986f, type: 3}
+    <trm>k__BackingField: {fileID: 0}
+    <price>k__BackingField: 10
+    <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
+    <DetectedRangeFloat>k__BackingField: 0
+    <DetectedLayer>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 0
