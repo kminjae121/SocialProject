@@ -30,6 +30,8 @@ namespace Member.LCM._01.Scripts.UI
 
         private void HandleChangePopulation(GetResourceEvent evt)
         {
+            if(Mathf.Approximately(evt.Population, 0f)) return;
+            
             if (_previousPopulation > evt.Population)
             {
                 Instantiate(popupText, transform).GetComponent<PopupText>().Initialize(
