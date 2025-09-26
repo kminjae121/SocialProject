@@ -44,6 +44,12 @@ public class ConstructionSystem : MonoBehaviour
     {
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
+
+        if (database.objectData[selectObjectIndex].Name == "SunFactory")
+        {
+            ConstructTopFactory();
+            return;
+        }
         
         
         if (database.objectData[selectObjectIndex].price > ResourceManager.Instance.Satisfaction)
@@ -67,6 +73,18 @@ public class ConstructionSystem : MonoBehaviour
         
         _getMousePos.OnClicked += PlaceStructure;
         _getMousePos.OnExit += StopPlaceMent;
+    }
+
+    private void ConstructTopFactory()
+    {
+        gridVisualization.SetActive(true);
+        cellIndicator.SetActive(true);
+        
+        GameObject cellChanger = Instantiate(database.objectData[selectObjectIndex].visualPrefab);
+        
+        cellIndicator = cellChanger;
+        
+        previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
 
     public void DestroyPlacement()
@@ -114,6 +132,7 @@ public class ConstructionSystem : MonoBehaviour
         }
         else
             return;
+        
         
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
 
