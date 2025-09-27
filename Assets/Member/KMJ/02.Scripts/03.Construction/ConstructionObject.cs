@@ -20,7 +20,7 @@ public class ConstructionObject : MonoBehaviour
 
     private void Start()
     {
-        objMeshRenderer.enabled = false;
+        buildingCompo.SetEnable(false);
     }
 
     public void StartConstructionObject()
@@ -39,7 +39,7 @@ public class ConstructionObject : MonoBehaviour
     private IEnumerator BuildWait(float waitingTimte)
     {
         yield return new WaitForSeconds(waitingTimte);
-        objMeshRenderer.enabled = true;
+        buildingCompo.SetEnable(true);
         EndConstructionObject();
     }
 }

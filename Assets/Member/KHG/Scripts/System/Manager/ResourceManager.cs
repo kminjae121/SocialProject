@@ -7,7 +7,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     [SerializeField] private GameEventChannelSO resourceChannel;
     public int Population { get; private set; }
     public int Electricity { get; private set; }
-    public int Money { get; private set; }
+    public int Money { get; private set; } = 9999;
 
     private EnergyManager _energyManager;
     private DelayInvoker<int> resourceRefresher;

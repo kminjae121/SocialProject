@@ -13,6 +13,7 @@ public enum CantPlacePoint
 public class GridData : MonoBehaviour
 {
     private Dictionary<Vector3Int, PlacementData> placeObjects = new();
+    private Dictionary<Vector3Int, PlacementData> placeTopObjects = new();
 
     private Dictionary<CantPlacePoint, Vector3Int> cantPlaceObjecs = new();
 
@@ -76,6 +77,39 @@ public class GridData : MonoBehaviour
         foreach (var pos in positionToOccupy)
         {
             if (placeObjects.ContainsKey(pos))
+                return false;
+
+            if (cantPlaceObjecs.ContainsValue(pos))
+                return false;
+
+        }
+        
+
+        return true;
+    }
+    
+    public void AddObjectAtTop(Vector3Int gridPosition, Vector2Int objectSize,
+        int ID, int placeObjectIdx)
+    {
+        List<Vector3Int> positionToOccupy = CalculatePosition(gridPosition, objectSize);
+        PlacementData data = new PlacementData(positionToOccupy, ID, placeObjectIdx);
+        
+        foreach (var placeObj in positionToOccupy)
+        {
+            if (placeTopObjects.ContainsKey(placeObj))
+                throw new Exception($"Dictionarty already contains this cell position");
+
+            placeTopObjects[placeObj] = data;
+        }
+    }
+    
+
+    public bool CanPlaceObjectTop(Vector3Int gridPosition, Vector2Int objectSize, string cantPosition = "")
+    {
+        List<Vector3Int> positionToOccupy = CalculatePosition(gridPosition, objectSize);
+        foreach (var pos in positionToOccupy)
+        {
+            if (placeTopObjects.ContainsKey(pos))
                 return false;
 
             if (cantPlaceObjecs.ContainsValue(pos))

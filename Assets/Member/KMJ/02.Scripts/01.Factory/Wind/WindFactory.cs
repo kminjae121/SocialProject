@@ -19,12 +19,12 @@ public class WindFactory : Factory
                 break;
             case Weather.Cloudy:
             {
-                
+                return;
             }
                 break;
             case Weather.Rain:
             {
-                
+                _increaseEnergy -= 20;
             }
                 break;
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 59393227506779374}
   - component: {fileID: 1646638666876270312}
   - component: {fileID: 3805655143397435696}
+  - component: {fileID: 1679462814419225706}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -108,6 +109,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1679462814419225706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184707940691437065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f4f37d3bea5b04ab3df99c036b054b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &376762492183655613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3118319793630717615}
+  - component: {fileID: 5476023450736536176}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -1237,6 +1251,18 @@ Transform:
   - {fileID: 5218678070874631212}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!156049354 &5476023450736536176
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183165306132972408}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
 --- !u!1 &8144207568722432478
 GameObject:
   m_ObjectHideFlags: 0
