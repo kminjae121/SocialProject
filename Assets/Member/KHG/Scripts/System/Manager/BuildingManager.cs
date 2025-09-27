@@ -38,16 +38,5 @@ namespace KHG.Scripts.Managers
                 yield return null;
             }
         }
-
-
-        bool va;
-        private void Update()
-        {
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                StartCoroutine(ChangeLight(va));
-                va = !va;
-            }
-        }
     }
 }
