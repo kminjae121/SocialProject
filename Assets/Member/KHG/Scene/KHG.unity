@@ -1875,7 +1875,7 @@ MonoBehaviour:
   - {fileID: 234037725}
   spawnSpeed: 1.2
   randomSpawnBetween: 1
-  carMoveSpeed: 0.1
+  carMoveSpeed: 0.2
 --- !u!4 &287156885
 Transform:
   m_ObjectHideFlags: 0
@@ -11669,6 +11669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
+  <Satisfaction>k__BackingField: 0
 --- !u!1 &1658143845
 GameObject:
   m_ObjectHideFlags: 0
