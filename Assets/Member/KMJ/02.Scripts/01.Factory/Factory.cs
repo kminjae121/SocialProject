@@ -55,7 +55,7 @@ public abstract class Factory : MonoBehaviour
     private void OnEnable()
     {
         AutoMakingEnergies();
-        AutoReduceEfficiency();
+        //AutoReduceEfficiency();
         _weatherEventChannel.AddListener<WeatherChangeEvent>(WeatherCondition);
     }
     

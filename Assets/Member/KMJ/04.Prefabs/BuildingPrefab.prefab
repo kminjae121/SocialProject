@@ -551,7 +551,7 @@ MonoBehaviour:
   - {fileID: 4211778612587250658}
   - {fileID: 6922899293771356723}
   currentBuilding: {fileID: 11400000, guid: 42d5546031a2e1940aaa1f7d7192642a, type: 2}
-  resourceChannel: {fileID: 0}
+  resourceChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
 --- !u!114 &518980264332826664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,8 +566,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisBuildingSO: {fileID: 11400000, guid: f34efa1422f8e6f4a87919626e06ad16, type: 2}
   objMeshRenderer: {fileID: 5275889677088642676}
-  buildType: 0
-  buildingCompo: {fileID: 0}
+  buildType: 1
+  buildingCompo: {fileID: 5439281161953950751}
 --- !u!65 &6197742329584242388
 BoxCollider:
   m_ObjectHideFlags: 0
