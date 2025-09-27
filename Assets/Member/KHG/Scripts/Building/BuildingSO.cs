@@ -7,4 +7,5 @@ public class BuildingSO : ScriptableObject
     public int BuildCost;
     public int DestroyCost;
     public int Population;
+    public BuildingType buildType;
 }
