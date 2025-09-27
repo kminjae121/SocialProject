@@ -7,6 +7,7 @@ public class ResourceEvents
     public static readonly PopulationEvent PopulationEvent = new();
     public static readonly MoneyEvent MoneyEvent = new();
     public static readonly GetResourceEvent GetResourceEvent = new();
+    public static readonly MoneyEvent GetMoneyEvent = new();
 }
 
 public class ElectricityEvent : GameEvent
@@ -42,12 +43,6 @@ public class PopulationEvent : GameEvent
 public class MoneyEvent : GameEvent
 {
     public int Money;
-
-    public MoneyEvent Initialize(int addMoney)
-    {
-        Money = addMoney;
-        return this;
-    }
 }
 
 public class GetResourceEvent : GameEvent

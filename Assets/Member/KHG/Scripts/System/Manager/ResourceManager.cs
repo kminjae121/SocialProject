@@ -46,6 +46,13 @@ public class ResourceManager : MonoSingleton<ResourceManager>
 
         resourceChannel.RaiseEvent(evt);
     }
+    private void SendMoney()
+    {
+        var evt = ResourceEvents.GetMoneyEvent;
+        evt.Money = Money;
+
+        resourceChannel.RaiseEvent(evt);
+    }
 
     private void RefreshResource(int value)
     {
@@ -62,6 +69,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
             return;
 
         Money -= amount;
+        SendMoney();
     }
 
     public bool CanConstructionObject(int amount)
