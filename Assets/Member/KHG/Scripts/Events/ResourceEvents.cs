@@ -5,7 +5,7 @@ public class ResourceEvents
 {
     public static readonly ElectricityEvent ElectricityEvent = new();
     public static readonly PopulationEvent PopulationEvent = new();
-    public static readonly SatisfactionEvent SatisfactionEvent = new();
+    public static readonly MoneyEvent MoneyEvent = new();
     public static readonly GetResourceEvent GetResourceEvent = new();
 }
 
@@ -39,23 +39,20 @@ public class PopulationEvent : GameEvent
     }
 }
 
-public class SatisfactionEvent : GameEvent
+public class MoneyEvent : GameEvent
 {
-    public int Satisfaction;
-    public int AddedSatisfaction;
+    public int Money;
 
-    public SatisfactionEvent Initialize(int SetValue = -1, int AddValue = 0)
+    public MoneyEvent Initialize(int addMoney)
     {
-        Satisfaction = SetValue;
-        AddedSatisfaction = AddValue;
-
+        Money = addMoney;
         return this;
     }
 }
 
 public class GetResourceEvent : GameEvent
 {
+    public int Money;
     public int Electricity;
-    public int Satisfaction;
     public int Population;
 }
