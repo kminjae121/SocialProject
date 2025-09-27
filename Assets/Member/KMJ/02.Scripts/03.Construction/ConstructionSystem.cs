@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core.Events;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -21,13 +22,17 @@ public class ConstructionSystem : MonoBehaviour
 
     private List<GameObject> placeGameObjects = new();
     [SerializeField] private LayerMask _whatIsStructor;
+    [SerializeField] private LayerMask _whatIsConstruction;
+    [SerializeField] private GameEventChannelSO _mapChannel;
 
     private bool _isTopSpawning = false;
+
+    private bool _isSpawning = false;
     
     private void Start()
     {
         StopPlaceMent();
-
+        
         previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
 
@@ -44,6 +49,10 @@ public class ConstructionSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
+        _mapChannel.RaiseEvent(MapEvents.GridMaterialEvent.Initialize(true));
+        _isSpawning = true;
+        StopPlaceMent();
+        
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
 
@@ -79,6 +88,7 @@ public class ConstructionSystem : MonoBehaviour
 
     private void ConstructTopFactory()
     {
+        _isTopSpawning = true;
         gridVisualization.SetActive(true);
         cellIndicator.SetActive(true);
         
@@ -94,8 +104,6 @@ public class ConstructionSystem : MonoBehaviour
     
     private void PlaceTop()
     {
-        _isTopSpawning = true;
-        
         if (_getMousePos.IsPointerOverUI())
             return;
 
@@ -106,19 +114,13 @@ public class ConstructionSystem : MonoBehaviour
         else
             return;
         
-        
-        Vector3 mousePosition = _getMousePos.GetWorldPosition();
-
-        Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
-        
-        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (((1 << hit.collider.gameObject.layer) & _whatIsStructor) != 0)
+            if (((1 << hit.collider.gameObject.layer) & _whatIsConstruction) != 0)
             {
                 GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab, hit.point, Quaternion.identity);
                 placeGameObjects.Add(gameObj);
@@ -132,8 +134,7 @@ public class ConstructionSystem : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
-        
-        return Physics.Raycast(ray,int.MaxValue,_whatIsStructor);
+        return Physics.Raycast(ray,int.MaxValue,_whatIsConstruction);
     }
 
     public void DestroyPlacement()
@@ -215,6 +216,9 @@ public class ConstructionSystem : MonoBehaviour
 
     private void StopPlaceMent()
     {
+        _mapChannel.RaiseEvent(MapEvents.GridMaterialEvent.Initialize(false));
+        _isSpawning = false;
+        _isTopSpawning = false;
         selectObjectIndex = -1;
         gridVisualization.SetActive(false);
         cellIndicator.SetActive(false);
@@ -232,6 +236,7 @@ public class ConstructionSystem : MonoBehaviour
         Vector3 cellWorldPos = _grid.CellToWorld(gridPosition);
         
         Renderer rend = cellIndicator.GetComponentInChildren<Renderer>();
+        
         if (rend != null)
         {
             float halfHeight = rend.bounds.size.y / 2f;
@@ -243,7 +248,7 @@ public class ConstructionSystem : MonoBehaviour
         if (selectObjectIndex < 0)
             return;
 
-        if (_isTopSpawning)
+        if (_isTopSpawning) 
         {
             bool placementValidity = IsTopSpawnning();
             previewRenderer.material.color = placementValidity ? Color.white : Color.red;   

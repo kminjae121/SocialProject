@@ -981,6 +981,10 @@ MonoBehaviour:
   _whatIsStructor:
     serializedVersion: 2
     m_Bits: 256
+  _whatIsConstruction:
+    serializedVersion: 2
+    m_Bits: 256
+  _mapChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
 --- !u!1 &596744539
 GameObject:
   m_ObjectHideFlags: 0

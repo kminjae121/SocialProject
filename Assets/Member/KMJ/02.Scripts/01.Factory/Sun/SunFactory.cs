@@ -27,12 +27,12 @@ public class SunFactory : Factory
                 break;
             case Weather.Cloudy:
             {
-                
+                _increaseEnergy -= 10;
             }
                 break;
             case Weather.Rain:
             {
-                
+                _increaseEnergy -= 20;
             }
                 break;
         }

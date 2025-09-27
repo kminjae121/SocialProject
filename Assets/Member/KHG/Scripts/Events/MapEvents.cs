@@ -9,6 +9,12 @@ public class MapEvents
 public class GridMaterialEvent : GameEvent
 {
     public bool Enabled;
+
+    public GridMaterialEvent Initialize(bool enable)
+    {
+        Enabled = enable;
+        return this;
+    }
 }
 public class WeatherChangeEvent : GameEvent
 {
