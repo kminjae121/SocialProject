@@ -10,7 +10,8 @@ namespace Member.LCM._01.Scripts.UI
 {
     public class WattUI : MonoBehaviour
     {
-        [Header("Event")] [SerializeField] private GameEventChannelSO resourceChannel;
+        [Header("Event")] 
+        [SerializeField] private GameEventChannelSO resourceChannel;
 
         [Header("Watt Info UI")] [SerializeField]
         private TextMeshProUGUI wattText;

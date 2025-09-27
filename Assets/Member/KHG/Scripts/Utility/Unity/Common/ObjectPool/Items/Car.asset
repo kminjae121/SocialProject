@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolingName: Car
   prefab: {fileID: 3188525008594439600, guid: a18c243fca39cdb48a3317e51c971b38, type: 3}
-  initCount: 15
+  initCount: 40
