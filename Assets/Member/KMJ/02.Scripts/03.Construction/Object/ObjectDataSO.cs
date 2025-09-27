@@ -11,6 +11,8 @@ public class ObjectDataSO : ScriptableObject
 [Serializable]
 public class ObjectData
 {
+    [field: SerializeField] public Sprite thisImage { get; set; }
+
     [field: SerializeField] 
     public string Name { get; private set; }
     [field: SerializeField]
