@@ -21,6 +21,8 @@ public class ConstructionSystem : MonoBehaviour
 
     private List<GameObject> placeGameObjects = new();
     [SerializeField] private LayerMask _whatIsStructor;
+
+    private bool _isTopSpawning = false;
     
     private void Start()
     {
@@ -44,6 +46,12 @@ public class ConstructionSystem : MonoBehaviour
     {
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
+
+        if (database.objectData[selectObjectIndex].Name == "SunFactory")
+        {
+            ConstructTopFactory();
+            return;
+        }
         
         
         if (database.objectData[selectObjectIndex].price > ResourceManager.Instance.Satisfaction)
@@ -67,6 +75,65 @@ public class ConstructionSystem : MonoBehaviour
         
         _getMousePos.OnClicked += PlaceStructure;
         _getMousePos.OnExit += StopPlaceMent;
+    }
+
+    private void ConstructTopFactory()
+    {
+        gridVisualization.SetActive(true);
+        cellIndicator.SetActive(true);
+        
+        GameObject cellChanger = Instantiate(database.objectData[selectObjectIndex].visualPrefab);
+        
+        cellIndicator = cellChanger;
+        
+        previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
+        
+        _getMousePos.OnClicked += PlaceTop;
+        _getMousePos.OnExit += StopPlaceMent;
+    }
+    
+    private void PlaceTop()
+    {
+        _isTopSpawning = true;
+        
+        if (_getMousePos.IsPointerOverUI())
+            return;
+
+        if (ResourceManager.Instance.CanConstructionObject(database.objectData[selectObjectIndex].price))
+        {
+            ResourceManager.Instance.ReduceSatisfaction(database.objectData[selectObjectIndex].price);
+        }
+        else
+            return;
+        
+        
+        Vector3 mousePosition = _getMousePos.GetWorldPosition();
+
+        Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
+        
+        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (((1 << hit.collider.gameObject.layer) & _whatIsStructor) != 0)
+            {
+                GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab, hit.point, Quaternion.identity);
+                placeGameObjects.Add(gameObj);
+
+                gameObj.GetComponent<ConstructionObject>().StartConstructionObject();
+            }
+        }
+    }
+
+    private bool IsTopSpawnning()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        
+        return Physics.Raycast(ray,int.MaxValue,_whatIsStructor);
     }
 
     public void DestroyPlacement()
@@ -99,6 +166,7 @@ public class ConstructionSystem : MonoBehaviour
 
     private void StopDestory()
     {
+        _isTopSpawning = false;
         _getMousePos.OnClicked -= DestoryStructure;
         _getMousePos.OnExit -= StopPlaceMent;
     }
@@ -114,6 +182,7 @@ public class ConstructionSystem : MonoBehaviour
         }
         else
             return;
+        
         
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
 
@@ -174,7 +243,15 @@ public class ConstructionSystem : MonoBehaviour
         if (selectObjectIndex < 0)
             return;
 
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
-        previewRenderer.material.color = placementValidity ? Color.white : Color.red;
+        if (_isTopSpawning)
+        {
+            bool placementValidity = IsTopSpawnning();
+            previewRenderer.material.color = placementValidity ? Color.white : Color.red;   
+        }
+        else
+        {
+            bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
+            previewRenderer.material.color = placementValidity ? Color.white : Color.red;   
+        }
     }
 }
