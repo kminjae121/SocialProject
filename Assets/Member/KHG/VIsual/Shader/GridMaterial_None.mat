@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GridMaterial
+  m_Name: GridMaterial_None
   m_Shader: {fileID: 4800000, guid: e971b25c40dfc7b409dcd8bc048b1413, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -36,6 +36,6 @@ Material:
     - _LineThickness: 0.05
     m_Colors:
     - _BaseColor: {r: 0.32941177, g: 0.4039216, b: 0.21568629, a: 1}
-    - _GridColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GridColor: {r: 0.32941177, g: 0.4039216, b: 0.21568629, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
