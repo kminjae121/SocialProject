@@ -57,11 +57,6 @@ public class ConstructionSystem : MonoBehaviour
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
 
-        if (database.objectData[selectObjectIndex].Name == "SunFactory")
-        {
-            ConstructTopFactory();
-            return;
-        }
         
         
         if (database.objectData[selectObjectIndex].price > ResourceManager.Instance.Money)
@@ -69,6 +64,11 @@ public class ConstructionSystem : MonoBehaviour
             return;
         }        
         
+        if (database.objectData[selectObjectIndex].Name == "SunFactory")
+        {
+            ConstructTopFactory();
+            return;
+        }
         if (selectObjectIndex < 0)
         {
             return;
@@ -334,7 +334,7 @@ public class ConstructionSystem : MonoBehaviour
         }
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, _cantConstruction))
+        if (Physics.Raycast(ray, out RaycastHit hit,int.MaxValue, _cantConstruction))
         {
             placementValidity = false;
         }
