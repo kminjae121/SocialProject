@@ -54,7 +54,7 @@ public class ConstructionSystem : MonoBehaviour
         }
         
         
-        if (database.objectData[selectObjectIndex].price > ResourceManager.Instance.Satisfaction)
+        if (database.objectData[selectObjectIndex].price > ResourceManager.Instance.Money)
         {
             return;
         }        
