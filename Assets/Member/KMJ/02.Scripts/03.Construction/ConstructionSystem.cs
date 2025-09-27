@@ -23,6 +23,7 @@ public class ConstructionSystem : MonoBehaviour
     private List<GameObject> placeGameObjects = new();
     [SerializeField] private LayerMask _whatIsStructor;
     [SerializeField] private LayerMask _whatIsConstruction;
+    [SerializeField] private LayerMask _cantConstruction;
     [SerializeField] private GameEventChannelSO _mapChannel;
 
     private bool _isTopSpawning = false;
@@ -107,42 +108,41 @@ public class ConstructionSystem : MonoBehaviour
         if (_getMousePos.IsPointerOverUI())
             return;
 
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit cantHit, 100f, _cantConstruction))
+        {
+            return; 
+        }
+
         if (ResourceManager.Instance.CanConstructionObject(database.objectData[selectObjectIndex].price))
         {
             ResourceManager.Instance.ReduceSatisfaction(database.objectData[selectObjectIndex].price);
         }
         else
             return;
-        
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        RaycastHit hit;
-        
+
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
-
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
-        
-        bool placementValidity = CheckTopPlacementValidity(gridPosition, selectObjectIndex);
 
+        bool placementValidity = CheckTopPlacementValidity(gridPosition, selectObjectIndex);
+        
         if (placementValidity == false)
             return;
-        
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (((1 << hit.collider.gameObject.layer) & _whatIsConstruction) != 0)
             {
                 GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab);
-
                 gameObj.transform.position = previewRenderer.transform.position;
-                
+
                 placeGameObjects.Add(gameObj);
-                
+
                 placeData.AddObjectAtTop(gridPosition,
                     database.objectData[selectObjectIndex].size,
                     database.objectData[selectObjectIndex].ID,
                     placeGameObjects.Count - 1);
-                
 
                 gameObj.GetComponent<ConstructionObject>().StartConstructionObject();
             }
@@ -196,36 +196,39 @@ public class ConstructionSystem : MonoBehaviour
         if (_getMousePos.IsPointerOverUI())
             return;
 
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, int.MaxValue, _cantConstruction))
+        {
+            return; 
+        }
+
         if (ResourceManager.Instance.CanConstructionObject(database.objectData[selectObjectIndex].price))
         {
             ResourceManager.Instance.ReduceSatisfaction(database.objectData[selectObjectIndex].price);
         }
         else
             return;
-        
-        
+
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
-
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
-        
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
 
+        bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
         if (placementValidity == false)
             return;
+
         GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab);
         gameObj.transform.position = _grid.CellToWorld(gridPosition);
         placeGameObjects.Add(gameObj);
 
         gameObj.GetComponent<ConstructionObject>().StartConstructionObject();
         DetectedObject(database.objectData[selectObjectIndex]);
-        
-        
+
         placeData.AddObjectAt(gridPosition,
             database.objectData[selectObjectIndex].size,
             database.objectData[selectObjectIndex].ID,
             placeGameObjects.Count - 1);
     }
-
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectObjectIndex)
     {
         GridData selectData = placeData;
@@ -294,12 +297,10 @@ public class ConstructionSystem : MonoBehaviour
 
         mouseIndicator.transform.position = mousePosition;
 
-
         Vector3 cellWorldPos = _grid.CellToWorld(gridPosition);
 
         if (cellIndicator == null)
             return;
-
 
         Renderer rend = cellIndicator.GetComponentInChildren<Renderer>();
         float previewHalfHeight = 0f;
@@ -307,30 +308,38 @@ public class ConstructionSystem : MonoBehaviour
         {
             previewHalfHeight = rend.bounds.size.y / 2f;
         }
-        
+
         float targetY = cellWorldPos.y + previewHalfHeight;
-        
+
         if (TryGetHighestStructorTopY(gridPosition, out float highestY))
         {
             targetY = highestY + previewHalfHeight;
         }
-        
+
         Vector3 finalPos = cellWorldPos;
         finalPos.y = Mathf.Lerp(cellIndicator.transform.position.y, targetY, 0.5f);
         cellIndicator.transform.position = finalPos;
 
         if (selectObjectIndex < 0)
             return;
-
+        
+        bool placementValidity;
         if (_isTopSpawning)
         {
-            bool placementValidity = CheckTopPlacementValidity(gridPosition, selectObjectIndex);
-            previewRenderer.material.color = placementValidity ? Color.white : Color.red;   
+            placementValidity = CheckTopPlacementValidity(gridPosition, selectObjectIndex);
         }
         else
         {
-            bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
-            previewRenderer.material.color = placementValidity ? Color.white : Color.red;   
+            placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
         }
+        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, _cantConstruction))
+        {
+            placementValidity = false;
+        }
+
+        previewRenderer.material.color = placementValidity ? Color.white : Color.red;
     }
+
 }
