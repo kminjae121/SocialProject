@@ -117,13 +117,32 @@ public class ConstructionSystem : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
         RaycastHit hit;
+        
+        Vector3 mousePosition = _getMousePos.GetWorldPosition();
+
+        Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
+        
+        bool placementValidity = CheckTopPlacementValidity(gridPosition, selectObjectIndex);
+
+        if (placementValidity == false)
+            return;
+        
 
         if (Physics.Raycast(ray, out hit))
         {
             if (((1 << hit.collider.gameObject.layer) & _whatIsConstruction) != 0)
             {
-                GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab, hit.point, Quaternion.identity);
+                GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab);
+
+                gameObj.transform.position = previewRenderer.transform.position;
+                
                 placeGameObjects.Add(gameObj);
+                
+                placeData.AddObjectAtTop(gridPosition,
+                    database.objectData[selectObjectIndex].size,
+                    database.objectData[selectObjectIndex].ID,
+                    placeGameObjects.Count - 1);
+                
 
                 gameObj.GetComponent<ConstructionObject>().StartConstructionObject();
             }
@@ -213,6 +232,14 @@ public class ConstructionSystem : MonoBehaviour
 
         return selectData.CanPlaceObjectAt(gridPosition, database.objectData[selectObjectIndex].size);
     }
+    
+    private bool CheckTopPlacementValidity(Vector3Int gridPosition, int selectObjectIndex)
+    {
+        GridData selectData = placeData;
+
+        return selectData.CanPlaceObjectTop(gridPosition, database.objectData[selectObjectIndex].size);
+    }
+    
 
     private void StopPlaceMent()
     {
@@ -225,6 +252,40 @@ public class ConstructionSystem : MonoBehaviour
         _getMousePos.OnClicked -= PlaceStructure;
         _getMousePos.OnExit -= StopPlaceMent;
     }
+    
+    private bool TryGetHighestStructorTopY(Vector3Int gridPosition, out float highestY)
+    {
+        highestY = 0f;
+        Vector3 cellWorldPos = _grid.CellToWorld(gridPosition);
+
+        float verticalHalfExtents = 5f;
+        Vector3 boxCenter = cellWorldPos + Vector3.up * verticalHalfExtents;
+        Vector3 halfExtents = new Vector3(_grid.cellSize.x / 2f, verticalHalfExtents, _grid.cellSize.z / 2f);
+
+        Collider[] cols = Physics.OverlapBox(boxCenter, halfExtents, Quaternion.identity, _whatIsStructor);
+
+        if (cols == null || cols.Length == 0)
+            return false;
+
+        float maxY = float.NegativeInfinity;
+        foreach (var col in cols)
+        {
+            if (col == null) continue;
+            if (col.gameObject == cellIndicator) continue;
+
+            Renderer r = col.GetComponentInChildren<Renderer>();
+            if (r != null)
+                maxY = Mathf.Max(maxY, r.bounds.max.y);
+            else
+                maxY = Mathf.Max(maxY, col.bounds.max.y);
+        }
+
+        if (float.IsNegativeInfinity(maxY))
+            return false;
+
+        highestY = maxY;
+        return true;
+    }
 
     private void Update()
     {
@@ -232,25 +293,38 @@ public class ConstructionSystem : MonoBehaviour
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
 
         mouseIndicator.transform.position = mousePosition;
-        
+
+
         Vector3 cellWorldPos = _grid.CellToWorld(gridPosition);
-        
+
+        if (cellIndicator == null)
+            return;
+
+
         Renderer rend = cellIndicator.GetComponentInChildren<Renderer>();
-        
+        float previewHalfHeight = 0f;
         if (rend != null)
         {
-            float halfHeight = rend.bounds.size.y / 2f;
-            cellWorldPos.y += halfHeight;
+            previewHalfHeight = rend.bounds.size.y / 2f;
         }
-
-        cellIndicator.transform.position = cellWorldPos;
+        
+        float targetY = cellWorldPos.y + previewHalfHeight;
+        
+        if (TryGetHighestStructorTopY(gridPosition, out float highestY))
+        {
+            targetY = highestY + previewHalfHeight;
+        }
+        
+        Vector3 finalPos = cellWorldPos;
+        finalPos.y = Mathf.Lerp(cellIndicator.transform.position.y, targetY, 0.5f);
+        cellIndicator.transform.position = finalPos;
 
         if (selectObjectIndex < 0)
             return;
 
-        if (_isTopSpawning) 
+        if (_isTopSpawning)
         {
-            bool placementValidity = IsTopSpawnning();
+            bool placementValidity = CheckTopPlacementValidity(gridPosition, selectObjectIndex);
             previewRenderer.material.color = placementValidity ? Color.white : Color.red;   
         }
         else

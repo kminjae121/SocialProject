@@ -128,7 +128,7 @@ MonoBehaviour:
   thisBuildingSO: {fileID: 11400000, guid: f34efa1422f8e6f4a87919626e06ad16, type: 2}
   objMeshRenderer: {fileID: 1628160656676703686}
   buildType: 0
-  buildingCompo: {fileID: 0}
+  buildingCompo: {fileID: 7696052506319156577}
 --- !u!65 &172609759416292857
 BoxCollider:
   m_ObjectHideFlags: 0
