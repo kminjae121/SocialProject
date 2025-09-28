@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7696052506319156577}
   - component: {fileID: 8520364001028939670}
   - component: {fileID: 172609759416292857}
+  - component: {fileID: 7322050839715822067}
   m_Layer: 8
   m_Name: SolarPanel
   m_TagString: Untagged
@@ -148,5 +149,20 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 13.659739, y: 24.802341, z: 12.296448}
-  m_Center: {x: -0.0000023841858, y: 12.401167, z: 0.124479055}
+  m_Size: {x: 3.885709, y: 1.9324827, z: 2.8108864}
+  m_Center: {x: -0.21677291, y: 0.96623755, z: 0.029634476}
+--- !u!114 &7322050839715822067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667647006166136017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3bb47728cec7af4fab2c5fc3e006285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _factorySO: {fileID: 11400000, guid: e9a09bb352227044d924c65322fe2c31, type: 2}
+  _modifierValue: 0
+  _weatherEventChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
