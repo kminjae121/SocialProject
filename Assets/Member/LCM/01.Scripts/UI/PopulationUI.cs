@@ -30,7 +30,9 @@ namespace Member.LCM._01.Scripts.UI
 
         private void HandleChangePopulation(GetResourceEvent evt)
         {
-            if(Mathf.Approximately(evt.Population, 0f)) return;
+            Debug.Log($"인구수{evt.Population}");
+            Debug.Log($"전력량{evt.Electricity}");
+            if(evt.Population == 0) return;
             
             if (_previousPopulation > evt.Population)
             {
@@ -45,7 +47,7 @@ namespace Member.LCM._01.Scripts.UI
                     , Color.green);
             }
 
-            populationText.SetText($"인구수 : {evt.Population}명 / {evt.Population}명");
+            populationText.SetText($"인구수 : {evt.Population}명");
             _previousPopulation = evt.Population;
         }
     }

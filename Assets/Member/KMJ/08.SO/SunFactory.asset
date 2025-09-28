@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SunFactory
   m_EditorClassIdentifier: 
   FactoryName: SunFactory
-  IncreasingValue: 2.7
+  IncreasingValue: 102
   ReduceTime: 3
   ReduceValue: 1.29
   _whatIsCollect:

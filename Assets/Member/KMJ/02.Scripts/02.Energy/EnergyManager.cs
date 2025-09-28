@@ -9,6 +9,8 @@ public class EnergyManager : MonoSingleton<EnergyManager>
 
     private GameEventChannelSO _lightChannel;
 
+    [SerializeField] private GameEventChannelSO _electricityEventChannel;
+
     protected override void Awake()
     {
         base.Awake();
@@ -40,7 +42,9 @@ public class EnergyManager : MonoSingleton<EnergyManager>
             LightTurnOn();
         }
 
-        currentCityEnergy += energy;
+        currentCityEnergy += (int)energy;
+        
+        _electricityEventChannel.RaiseEvent(ResourceEvents.ElectricityEvent.Initialize(-1,(int)energy));
     }
 
     public void MinusEnergyValue(float value)
