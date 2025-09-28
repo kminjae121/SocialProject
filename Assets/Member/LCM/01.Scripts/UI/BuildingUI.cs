@@ -29,14 +29,14 @@ namespace Member.LCM._01.Scripts.UI
         {
             if (_isShow)
             {
-                buttonTrm.DORotate(Vector3.zero, upDownTime, RotateMode.Fast);
+                buttonTrm.DORotate(Vector3.zero, upDownTime);
                 
                 buttonTrm.DOAnchorPosY(-490f, upDownTime);
                 buildingPanelTrm.DOAnchorPosY(-650f, upDownTime);
             }
             else
             {
-                buttonTrm.DORotate(new Vector3(0,0,-180f), upDownTime, RotateMode.Fast);
+                buttonTrm.DORotate(new Vector3(0,0,-180f), upDownTime);
                 
                 buttonTrm.DOAnchorPosY(-270f, upDownTime);
                 buildingPanelTrm.DOAnchorPosY(-430f, upDownTime);
