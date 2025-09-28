@@ -13,19 +13,8 @@ MonoBehaviour:
   m_Name: ObjectDataSO
   m_EditorClassIdentifier: 
   objectData:
-  - <Name>k__BackingField: Test
-    <ID>k__BackingField: 1
-    <size>k__BackingField: {x: 1, y: 1}
-    <prefab>k__BackingField: {fileID: 5772780409800997494, guid: 52b480e4e53754347a479fb8620597f5, type: 3}
-    <visualPrefab>k__BackingField: {fileID: 0}
-    <trm>k__BackingField: {fileID: 0}
-    <price>k__BackingField: 10
-    <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
-    <DetectedRangeFloat>k__BackingField: 0
-    <DetectedLayer>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 0
-  - <Name>k__BackingField: Building
+  - <thisImage>k__BackingField: {fileID: 21300000, guid: 701e7ed4dde1bf949b30e33741547ac9, type: 3}
+    <Name>k__BackingField: Building
     <ID>k__BackingField: 2
     <size>k__BackingField: {x: 7, y: 7}
     <prefab>k__BackingField: {fileID: 5281784129647087864, guid: c1dc8cb058b61194bac0edc7932c342d, type: 3}
@@ -37,11 +26,38 @@ MonoBehaviour:
     <DetectedLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 0
-  - <Name>k__BackingField: SunFactory
+  - <thisImage>k__BackingField: {fileID: 21300000, guid: 701e7ed4dde1bf949b30e33741547ac9, type: 3}
+    <Name>k__BackingField: SunFactory
     <ID>k__BackingField: 3
     <size>k__BackingField: {x: 1, y: 1}
     <prefab>k__BackingField: {fileID: 4667647006166136017, guid: 357eb165041d014468e17d39deac0bc3, type: 3}
     <visualPrefab>k__BackingField: {fileID: 1321975054147469089, guid: 4b0796bbe50ac2c42a956f41413e0279, type: 3}
+    <trm>k__BackingField: {fileID: 0}
+    <price>k__BackingField: 10
+    <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
+    <DetectedRangeFloat>k__BackingField: 0
+    <DetectedLayer>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 0
+  - <thisImage>k__BackingField: {fileID: 21300000, guid: 701e7ed4dde1bf949b30e33741547ac9, type: 3}
+    <Name>k__BackingField: NuclearFactory
+    <ID>k__BackingField: 3
+    <size>k__BackingField: {x: 6, y: 6}
+    <prefab>k__BackingField: {fileID: 2072059875901287877, guid: 3635f122afb246c449fe7503fc88ac7d, type: 3}
+    <visualPrefab>k__BackingField: {fileID: 1750752643696218857, guid: fd4f272e2fbe3144a933c4b2370ad6bb, type: 3}
+    <trm>k__BackingField: {fileID: 0}
+    <price>k__BackingField: 10
+    <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
+    <DetectedRangeFloat>k__BackingField: 0
+    <DetectedLayer>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 0
+  - <thisImage>k__BackingField: {fileID: 21300000, guid: 701e7ed4dde1bf949b30e33741547ac9, type: 3}
+    <Name>k__BackingField: WindFactory
+    <ID>k__BackingField: 3
+    <size>k__BackingField: {x: 1, y: 1}
+    <prefab>k__BackingField: {fileID: 659124195473185488, guid: ee65035896672df4b8dc8170a29e06dc, type: 3}
+    <visualPrefab>k__BackingField: {fileID: 5577156426780272086, guid: 38b49ca1ea867f349906eaf200b457b4, type: 3}
     <trm>k__BackingField: {fileID: 0}
     <price>k__BackingField: 10
     <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}

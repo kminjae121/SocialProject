@@ -50,9 +50,9 @@ public class ConstructionSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
+        StopPlaceMent();
         _mapChannel.RaiseEvent(MapEvents.GridMaterialEvent.Initialize(true));
         _isSpawning = true;
-        StopPlaceMent();
         
         selectObjectIndex = database.objectData.FindIndex(data =>
             data.ID == ID);
@@ -75,7 +75,6 @@ public class ConstructionSystem : MonoBehaviour
         }
         
         gridVisualization.SetActive(true);
-        cellIndicator.SetActive(true);
         
         GameObject cellChanger = Instantiate(database.objectData[selectObjectIndex].visualPrefab);
         
@@ -83,6 +82,7 @@ public class ConstructionSystem : MonoBehaviour
         
         previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
         
+        cellIndicator.SetActive(true);
         _getMousePos.OnClicked += PlaceStructure;
         _getMousePos.OnExit += StopPlaceMent;
     }
@@ -91,13 +91,14 @@ public class ConstructionSystem : MonoBehaviour
     {
         _isTopSpawning = true;
         gridVisualization.SetActive(true);
-        cellIndicator.SetActive(true);
         
         GameObject cellChanger = Instantiate(database.objectData[selectObjectIndex].visualPrefab);
         
         cellIndicator = cellChanger;
         
         previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
+        
+        cellIndicator.SetActive(true);
         
         _getMousePos.OnClicked += PlaceTop;
         _getMousePos.OnExit += StopPlaceMent;
@@ -251,7 +252,8 @@ public class ConstructionSystem : MonoBehaviour
         _isTopSpawning = false;
         selectObjectIndex = -1;
         gridVisualization.SetActive(false);
-        cellIndicator.SetActive(false);
+        //cellIndicator.SetActive(false);
+        Destroy(cellIndicator);
         _getMousePos.OnClicked -= PlaceStructure;
         _getMousePos.OnExit -= StopPlaceMent;
     }
