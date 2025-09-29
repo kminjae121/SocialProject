@@ -6,7 +6,7 @@ public class FactorySO : ScriptableObject
     public string FactoryName;
 
     [Header("IncreasingValue")]
-    [Range(0, 20)]
+    [Range(0, 1000)]
     public float IncreasingValue;
 
     [Header("ReduceTime")]

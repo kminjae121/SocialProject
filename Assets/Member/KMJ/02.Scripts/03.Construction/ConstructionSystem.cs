@@ -111,10 +111,11 @@ public class ConstructionSystem : MonoBehaviour
 
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit cantHit, 100f, _cantConstruction))
-        {
-            return; 
-        }
+        
+        //if (Physics.Raycast(ray, out RaycastHit cantHit, 100f, _cantConstruction))
+        //{
+        //    return; 
+        //}
 
         if (ResourceManager.Instance.CanConstructionObject(database.objectData[selectObjectIndex].price))
         {
@@ -133,20 +134,17 @@ public class ConstructionSystem : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (((1 << hit.collider.gameObject.layer) & _whatIsConstruction) != 0)
-            {
-                GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab);
-                gameObj.transform.position = previewRenderer.transform.position;
+            GameObject gameObj = Instantiate(database.objectData[selectObjectIndex].prefab);
+            gameObj.transform.position = previewRenderer.transform.position;
 
-                placeGameObjects.Add(gameObj);
+            placeGameObjects.Add(gameObj);
 
-                placeData.AddObjectAtTop(gridPosition,
-                    database.objectData[selectObjectIndex].size,
-                    database.objectData[selectObjectIndex].ID,
-                    placeGameObjects.Count - 1);
+            placeData.AddObjectAtTop(gridPosition,
+                database.objectData[selectObjectIndex].size,
+                database.objectData[selectObjectIndex].ID,
+                placeGameObjects.Count - 1);
 
-                gameObj.GetComponent<ConstructionObject>().StartConstructionObject();
-            }
+            gameObj.GetComponent<ConstructionObject>().StartConstructionObject();
         }
     }
 
@@ -168,6 +166,12 @@ public class ConstructionSystem : MonoBehaviour
 
     private void DestoryStructure()
     {
+        if (ResourceManager.Instance.CanConstructionObject(database.objectData[selectObjectIndex].price))
+        {
+            ResourceManager.Instance.ReduceSatisfaction(database.objectData[selectObjectIndex].price);
+        }
+        else
+            return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
         RaycastHit hit;
