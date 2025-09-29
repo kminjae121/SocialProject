@@ -44,6 +44,7 @@ public class EnergyManager : MonoSingleton<EnergyManager>
 
         currentCityEnergy += (int)energy;
         
+        print(_electricityEventChannel);
         _electricityEventChannel.RaiseEvent(ResourceEvents.ElectricityEvent.Initialize(-1,(int)energy));
     }
 
