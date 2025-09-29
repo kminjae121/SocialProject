@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SunFactory
   m_EditorClassIdentifier: 
   FactoryName: SunFactory
-  IncreasingValue: 102
-  ReduceTime: 3
-  ReduceValue: 1.29
+  IncreasingValue: 1100
+  ReduceTime: 15
+  ReduceValue: 20
   _whatIsCollect:
     serializedVersion: 2
     m_Bits: 0

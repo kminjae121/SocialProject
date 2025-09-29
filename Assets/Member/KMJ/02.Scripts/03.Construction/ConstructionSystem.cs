@@ -161,6 +161,7 @@ public class ConstructionSystem : MonoBehaviour
 
     public void DestroyPlacement()
     {
+        Destroy(cellIndicator.gameObject);
         _getMousePos.OnClicked -= PlaceStructure;
         _getMousePos.OnExit -= StopPlaceMent;
 
@@ -176,6 +177,8 @@ public class ConstructionSystem : MonoBehaviour
         }
         else
             return;
+        
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
         RaycastHit hit;
@@ -189,8 +192,9 @@ public class ConstructionSystem : MonoBehaviour
                 hit.collider.gameObject.SetActive(false);
             }
         }
-        
-        
+
+        StopDestory();
+
     }
 
     private void StopDestory()

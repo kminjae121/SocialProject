@@ -10,19 +10,19 @@ namespace KHG.Scripts.Managers
 {
     public class BuildingManager : MonoBehaviour
     {
-        [SerializeField] private GameEventChannelSO buildingChannel;
+        [SerializeField] private GameEventChannelSO mapChannel;
 
         public int MaxPopulation { get; private set; }
         public List<Structure> structures;
 
         private void Awake()
         {
-            buildingChannel.AddListener<TurnOffTheLight>(ManageLight);
+            mapChannel.AddListener<TurnOffTheLight>(ManageLight);
         }
 
         private void OnDestroy()
         {
-            buildingChannel.RemoveListener<TurnOffTheLight>(ManageLight);
+            mapChannel.RemoveListener<TurnOffTheLight>(ManageLight);
         }
 
         private void ManageLight(TurnOffTheLight light)
