@@ -8,7 +8,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] private Image blockPanel;
     public void OnPlayPressed()
     {
-        blockPanel.DOFade(1f,1f).OnComplete(()=>SceneManager.LoadScene("MergeScene"));
+        blockPanel.DOFade(1f,1f).OnComplete(()=>SceneManager.LoadScene("MScene"));
     }
     public void OnExitPressed()
     {
