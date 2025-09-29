@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1542922432429095439}
   - component: {fileID: 3769601639608583209}
   - component: {fileID: 5714259379043620438}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: NuclearFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,6 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factorySO: {fileID: 11400000, guid: df666af9ac272d245bd7551a71946767, type: 2}
-  _modifierValue: 0
+  _modifierValue: 10
   _weatherEventChannel: {fileID: 11400000, guid: 9031e04bd5914cb4684f1aed43226d25, type: 2}
   _electricityEventChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}

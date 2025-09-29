@@ -26,9 +26,9 @@ public class WeatherManager : MonoBehaviour
     }
     private IEnumerator WeatherCycle()
     {
-        yield return new WaitForSeconds(Random.Range(1,1));
+        yield return new WaitForSeconds(Random.Range(15,180));
         ChangeWeather(RandomWeather());
-        yield return new WaitForSeconds(Random.Range(4,5));
+        yield return new WaitForSeconds(Random.Range(30,180));
         ChangeWeather(Weather.Clean);
         StartCoroutine(WeatherCycle());
     }
@@ -39,7 +39,7 @@ public class WeatherManager : MonoBehaviour
     }
     private void ChangeWeather(Weather weather)
     {
-        print("ÇöÀç³¯¾¾:" + weather);
+        print("ï¿½ï¿½ï¿½ç³¯ï¿½ï¿½:" + weather);
         var evt = MapEvents.WeatherChangeEvent;
         evt.Weather = weather;
 

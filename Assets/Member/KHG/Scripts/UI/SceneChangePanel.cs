@@ -17,6 +17,7 @@ public class SceneChangePanel : MonoBehaviour
 
     private void OnEnable()
     {
+        panel.DOFade(1, 0);
         panel.DOFade(0, 1f);
     }
 

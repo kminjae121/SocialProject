@@ -1,5 +1,8 @@
-﻿using Core.Events;
+﻿using System.Collections;
+using Core.Events;
 using System.Collections.Generic;
+using KHG.Scripts.Managers;
+using Member.LCM._01.Scripts.UI;
 using UnityEngine;
 
 namespace KHG.Scripts.Buildings
@@ -10,11 +13,16 @@ namespace KHG.Scripts.Buildings
         [SerializeField] private BuildingSO currentBuilding;
         [SerializeField] private GameEventChannelSO resourceChannel;
 
+        [SerializeField] private int reduceValue;
+        
+        private BuildingManager _buildingManager;
+        
         private MeshRenderer _renderer;
 
         private void Awake()
         {
             _renderer = GetComponent<MeshRenderer>();
+            _buildingManager = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
         }
         public override void SetActive(bool value)
         {
@@ -29,6 +37,9 @@ namespace KHG.Scripts.Buildings
                     renderer.enabled = value;
             if(_renderer != null)
                 _renderer.enabled = value;
+            
+            _buildingManager.structures.Add(this);
+            StartCoroutine(UseElecticity());
         }
 
         public void StartConstruction()
@@ -46,6 +57,16 @@ namespace KHG.Scripts.Buildings
             evt.AddedPopulation = currentBuilding.Population;
 
             resourceChannel.RaiseEvent(evt);
+        }
+
+        private IEnumerator UseElecticity()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(3f);
+                
+                resourceChannel.RaiseEvent(ResourceEvents.ElectricityEvent.Initialize(-1,-reduceValue));
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8520364001028939670}
   - component: {fileID: 172609759416292857}
   - component: {fileID: 7322050839715822067}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: SolarPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,6 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factorySO: {fileID: 11400000, guid: e9a09bb352227044d924c65322fe2c31, type: 2}
-  _modifierValue: 0
+  _modifierValue: 4
   _weatherEventChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
   _electricityEventChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
