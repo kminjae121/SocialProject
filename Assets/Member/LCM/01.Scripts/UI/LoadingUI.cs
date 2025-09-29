@@ -9,6 +9,7 @@ namespace Member.LCM._01.Scripts.UI
     {
         [SerializeField] private Image loadingImage;
         private Camera _camera;
+        private Vector3 _firstPos;
 
         private void Awake()
         {
@@ -17,12 +18,21 @@ namespace Member.LCM._01.Scripts.UI
 
         public void SetPosition(Vector3 position)
         {
-            transform.position = _camera.WorldToScreenPoint(position);
+            _firstPos = position;
             transform.rotation = _camera.transform.rotation;
         }
+
+        private void LateUpdate()
+        {
+            transform.position = _camera.WorldToScreenPoint(_firstPos);
+        }
+
         public void SetTimeAndStartLoading(float time)
         {
-            loadingImage.DOFillAmount(1f, time);
+            loadingImage.DOFillAmount(1f, time).OnComplete(() =>
+            {
+                Destroy(gameObject);
+            });
         }
     }
 }
