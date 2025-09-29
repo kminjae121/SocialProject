@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,21 +9,25 @@ namespace Member.LCM._01.Scripts.UI
     {
         [SerializeField] private Image buildingIcon;
         [SerializeField] private TextMeshProUGUI buildingNameText;
-        [SerializeField] private ConstructionSystem constructionSystem;
+        private ConstructionSystem _constructionSystem;
 
-        private Button _iconButton;
-        
+        private int _id;
 
         private void Awake()
         {
-            _iconButton = GetComponent<Button>();
+            _constructionSystem = FindAnyObjectByType<ConstructionSystem>();
         }
 
         public void Initialize(Sprite icon, string name, int id)
         {
             buildingIcon.sprite = icon;
             buildingNameText.SetText(name);
-            _iconButton.onClick.AddListener(() => constructionSystem.StartPlacement(id));
+            _id = id;
+        }
+
+        public void OnClickIcon()
+        {
+            _constructionSystem.StartPlacement(_id);
         }
     }
 }
