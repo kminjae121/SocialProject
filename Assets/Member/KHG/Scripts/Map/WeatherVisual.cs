@@ -5,6 +5,9 @@ using UnityEngine;
 public class WeatherVisual : MonoBehaviour
 {
     [SerializeField] private GameEventChannelSO mapChannel;
+    [Space] 
+    [SerializeField] private WeatherController rainObj;
+    [SerializeField] private WeatherController clodyObj;
 
     private void Awake()
     {
@@ -21,13 +24,37 @@ public class WeatherVisual : MonoBehaviour
         switch (evt.Weather)
         {
             case Weather.Rain:
+                Rain();
                 break;
             case Weather.Cloudy:
+                Cloudy();
                 break;
             case Weather.Clean:
+                Clear();
                 break;
             default:
                 break;
         }
+    }
+
+    private void Rain()
+    {
+        rainObj.gameObject.SetActive(true);
+        clodyObj.gameObject.SetActive(true);
+        rainObj.SetActive(true);
+        clodyObj.SetActive(true);
+    }
+
+    private void Cloudy()
+    {
+        rainObj.SetActive(false);
+        clodyObj.gameObject.SetActive(true);
+        clodyObj.SetActive(true);
+    }
+
+    private void Clear()
+    {
+        rainObj.SetActive(false);
+        clodyObj.SetActive(false);
     }
 }

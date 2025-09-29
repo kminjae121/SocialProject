@@ -26,18 +26,20 @@ public class WeatherManager : MonoBehaviour
     }
     private IEnumerator WeatherCycle()
     {
-        yield return new WaitForSeconds(Random.Range(30,180));
+        yield return new WaitForSeconds(Random.Range(1,1));
         ChangeWeather(RandomWeather());
-        yield return new WaitForSeconds(Random.Range(30,120));
+        yield return new WaitForSeconds(Random.Range(4,5));
         ChangeWeather(Weather.Clean);
+        StartCoroutine(WeatherCycle());
     }
     private Weather RandomWeather()
     {
-        int index = Random.Range(0, (int)Weather.NULL - 1);
+        int index = Random.Range(0, (int)Weather.NULL);
         return (Weather)index;
     }
     private void ChangeWeather(Weather weather)
     {
+        print("ÇöÀç³¯¾¾:" + weather);
         var evt = MapEvents.WeatherChangeEvent;
         evt.Weather = weather;
 
