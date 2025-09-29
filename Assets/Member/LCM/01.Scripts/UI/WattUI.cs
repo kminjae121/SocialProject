@@ -13,8 +13,8 @@ namespace Member.LCM._01.Scripts.UI
         [Header("Event")] 
         [SerializeField] private GameEventChannelSO resourceChannel;
 
-        [Header("Watt Info UI")] [SerializeField]
-        private TextMeshProUGUI wattText;
+        [Header("Watt Info UI")] 
+        [SerializeField] private TextMeshProUGUI wattText;
 
         [SerializeField] private List<string> wattUnits;
         private int _index;
