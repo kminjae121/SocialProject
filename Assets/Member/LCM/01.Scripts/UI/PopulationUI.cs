@@ -30,9 +30,7 @@ namespace Member.LCM._01.Scripts.UI
 
         private void HandleChangePopulation(GetResourceEvent evt)
         {
-            Debug.Log($"인구수{evt.Population}");
-            Debug.Log($"전력량{evt.Electricity}");
-            if(evt.Population == 0) return;
+            if(evt.Population == _previousPopulation) return;
             
             if (_previousPopulation > evt.Population)
             {
