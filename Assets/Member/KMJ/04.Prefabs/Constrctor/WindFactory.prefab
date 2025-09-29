@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3427676261204484396}
   - component: {fileID: 8741074717142728557}
   - component: {fileID: 4443341410433520992}
-  m_Layer: 8
+  - component: {fileID: -1935674706587018591}
+  m_Layer: 12
   m_Name: WindFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factorySO: {fileID: 11400000, guid: f5b0c6f580d128941989d5ae10ba194a, type: 2}
-  _modifierValue: 0
+  _modifierValue: 4
   _weatherEventChannel: {fileID: 11400000, guid: 6bbac497009b81b4392ab40af6827ee0, type: 2}
   _electricityEventChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
 --- !u!65 &4443341410433520992
@@ -114,6 +115,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.885709, y: 13.350427, z: 2.8108864}
   m_Center: {x: -0.21677291, y: 6.6752095, z: 0.029634476}
+--- !u!95 &-1935674706587018591
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659124195473185488}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 2605c818ea0c2df4092b898402e71aae, type: 3}
+  m_Controller: {fileID: 9100000, guid: 2975ae7ba0502da4abe2c368225ef8bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2136652326846768886
 GameObject:
   m_ObjectHideFlags: 0

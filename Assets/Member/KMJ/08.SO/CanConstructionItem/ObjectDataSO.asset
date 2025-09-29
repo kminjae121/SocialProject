@@ -20,7 +20,7 @@ MonoBehaviour:
     <prefab>k__BackingField: {fileID: 5281784129647087864, guid: c1dc8cb058b61194bac0edc7932c342d, type: 3}
     <visualPrefab>k__BackingField: {fileID: 5281784129647087864, guid: d3040b512947d2d469812df70450986f, type: 3}
     <trm>k__BackingField: {fileID: 0}
-    <price>k__BackingField: 2000
+    <price>k__BackingField: 3000
     <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
     <DetectedRangeFloat>k__BackingField: 0
     <DetectedLayer>k__BackingField:
@@ -33,7 +33,7 @@ MonoBehaviour:
     <prefab>k__BackingField: {fileID: 4667647006166136017, guid: 357eb165041d014468e17d39deac0bc3, type: 3}
     <visualPrefab>k__BackingField: {fileID: 1321975054147469089, guid: 4b0796bbe50ac2c42a956f41413e0279, type: 3}
     <trm>k__BackingField: {fileID: 0}
-    <price>k__BackingField: 3000
+    <price>k__BackingField: 5000
     <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
     <DetectedRangeFloat>k__BackingField: 0
     <DetectedLayer>k__BackingField:
@@ -46,7 +46,7 @@ MonoBehaviour:
     <prefab>k__BackingField: {fileID: 2072059875901287877, guid: 3635f122afb246c449fe7503fc88ac7d, type: 3}
     <visualPrefab>k__BackingField: {fileID: 1750752643696218857, guid: fd4f272e2fbe3144a933c4b2370ad6bb, type: 3}
     <trm>k__BackingField: {fileID: 0}
-    <price>k__BackingField: 9999999
+    <price>k__BackingField: 18000
     <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
     <DetectedRangeFloat>k__BackingField: 0
     <DetectedLayer>k__BackingField:
@@ -59,7 +59,7 @@ MonoBehaviour:
     <prefab>k__BackingField: {fileID: 659124195473185488, guid: ee65035896672df4b8dc8170a29e06dc, type: 3}
     <visualPrefab>k__BackingField: {fileID: 5577156426780272086, guid: 38b49ca1ea867f349906eaf200b457b4, type: 3}
     <trm>k__BackingField: {fileID: 0}
-    <price>k__BackingField: 5000
+    <price>k__BackingField: 8000
     <DetectedRangeVec>k__BackingField: {x: 0, y: 0, z: 0}
     <DetectedRangeFloat>k__BackingField: 0
     <DetectedLayer>k__BackingField:

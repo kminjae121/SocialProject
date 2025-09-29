@@ -5,12 +5,14 @@ using Utility.Unity.Common;
 public class ResourceManager : MonoSingleton<ResourceManager>
 {
     [SerializeField] private GameEventChannelSO resourceChannel;
+    [SerializeField] private GameEventChannelSO mapChannel;
     public int Population { get; private set; }
-    public int Electricity { get; private set; }
-    public int Money { get; private set; } = 1000;
+    public int Electricity { get; private set; } = 5000;
+    public int Money { get; private set; } = 10000;
 
     private EnergyManager _energyManager;
     private DelayInvoker<int> resourceRefresher;
+    private bool _isBlackOut;
     [Space]
     [SerializeField] private int moneyPerPerson = 300;
 
@@ -35,9 +37,20 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     }
     private void HandleElectricity(ElectricityEvent arg)
     {
-        if (arg.Electricity == -1) Electricity += arg.AddedElectricity;
-        else Electricity = arg.Electricity;
+        print(Electricity + arg.AddedElectricity < 0);
+        if (Electricity + arg.AddedElectricity < 0)
+        {
+            _isBlackOut = true;
+            mapChannel.RaiseEvent(LightEvent.lightEvent.Initialize(true));
+            return;
+        }
+        if(_isBlackOut == false)
+            mapChannel.RaiseEvent(LightEvent.lightEvent.Initialize(false));
+        
+        Electricity += arg.AddedElectricity;
         SendResource();
+        
+        print(Electricity);
     }
 
     private void SendResource()
@@ -58,7 +71,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
 
     private void RefreshResource(int value)
     {
-        Electricity = value;
+        //Electricity = value;
         SendResource();
     }
     private void Update()
