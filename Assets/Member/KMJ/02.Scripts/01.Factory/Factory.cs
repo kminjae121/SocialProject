@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Runtime.Serialization.Json;
 using Core.Events;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public abstract class Factory : MonoBehaviour
 {

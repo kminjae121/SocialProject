@@ -764,8 +764,6 @@ MonoBehaviour:
   resourceChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
   wattText: {fileID: 4421652528308564674}
   wattUnits:
-  - W
-  - KW
   - MW
   - GW
   wattConversionPanel: {fileID: 6237156804528727002}
