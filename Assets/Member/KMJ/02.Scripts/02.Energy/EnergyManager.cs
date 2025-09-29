@@ -1,6 +1,4 @@
 using Core.Events;
-using NUnit.Framework;
-using System;
 using UnityEngine;
 
 public class EnergyManager : MonoSingleton<EnergyManager>
@@ -44,6 +42,7 @@ public class EnergyManager : MonoSingleton<EnergyManager>
 
         currentCityEnergy += (int)energy;
         
+        print(_electricityEventChannel);
         _electricityEventChannel.RaiseEvent(ResourceEvents.ElectricityEvent.Initialize(-1,(int)energy));
     }
 
