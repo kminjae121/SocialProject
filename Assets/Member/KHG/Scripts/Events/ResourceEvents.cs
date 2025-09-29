@@ -43,6 +43,11 @@ public class PopulationEvent : GameEvent
 public class MoneyEvent : GameEvent
 {
     public int Money;
+    public MoneyEvent Init(int addValue)
+    {
+        Money = addValue;
+        return this;
+    }
 }
 
 public class GetResourceEvent : GameEvent
