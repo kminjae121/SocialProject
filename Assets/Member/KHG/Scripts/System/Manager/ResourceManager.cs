@@ -7,7 +7,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     [SerializeField] private GameEventChannelSO resourceChannel;
     public int Population { get; private set; }
     public int Electricity { get; private set; }
-    public int Money { get; private set; } = 99999999;
+    public int Money { get; private set; } = 10000;
 
     private EnergyManager _energyManager;
     private DelayInvoker<int> resourceRefresher;
@@ -35,9 +35,10 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     }
     private void HandleElectricity(ElectricityEvent arg)
     {
-        if (arg.Electricity == -1) Electricity += arg.AddedElectricity;
-        else Electricity = arg.Electricity;
+        Electricity += arg.AddedElectricity;
         SendResource();
+        
+        print(Electricity);
     }
 
     private void SendResource()
@@ -58,7 +59,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
 
     private void RefreshResource(int value)
     {
-        Electricity = value;
+        //Electricity = value;
         SendResource();
     }
     private void Update()
