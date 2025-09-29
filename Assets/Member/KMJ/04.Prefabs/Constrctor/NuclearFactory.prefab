@@ -113,7 +113,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentBuilding: {fileID: 11400000, guid: 42d5546031a2e1940aaa1f7d7192642a, type: 2}
-  resourceChannel: {fileID: 0}
+  resourceChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
 --- !u!114 &1542922432429095439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,3 +166,4 @@ MonoBehaviour:
   _factorySO: {fileID: 11400000, guid: df666af9ac272d245bd7551a71946767, type: 2}
   _modifierValue: 0
   _weatherEventChannel: {fileID: 11400000, guid: 9031e04bd5914cb4684f1aed43226d25, type: 2}
+  _electricityEventChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
