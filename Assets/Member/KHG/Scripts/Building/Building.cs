@@ -12,6 +12,7 @@ namespace KHG.Scripts.Buildings
         [SerializeField] private List<MeshRenderer> windows;
         [SerializeField] private BuildingSO currentBuilding;
         [SerializeField] private GameEventChannelSO resourceChannel;
+        [SerializeField] private Factory factory;
 
         [SerializeField] private int reduceValue;
         
@@ -30,6 +31,14 @@ namespace KHG.Scripts.Buildings
                 win.enabled = value;
         }
 
+        private void StartMakeEnergy()
+        {
+            if (factory != null)
+            {
+                factory.AutoMakingEnergies();
+            }
+        }
+
         public void SetEnable(bool value)
         {
             foreach (Transform child in transform)
@@ -39,6 +48,7 @@ namespace KHG.Scripts.Buildings
                 _renderer.enabled = value;
             
             _buildingManager.structures.Add(this);
+            StartMakeEnergy();
             StartCoroutine(UseElecticity());
         }
 

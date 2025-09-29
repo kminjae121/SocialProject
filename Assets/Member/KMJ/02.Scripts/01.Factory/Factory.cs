@@ -51,7 +51,7 @@ public abstract class Factory : MonoBehaviour
 
     private void OnEnable()
     {
-        AutoMakingEnergies();
+        //AutoMakingEnergies();
         _weatherEventChannel.AddListener<WeatherChangeEvent>(WeatherCondition);
         _increaseEnergy = _factorySO.IncreasingValue;
     }
@@ -120,7 +120,7 @@ public abstract class Factory : MonoBehaviour
         }
     }
 
-    private void AutoMakingEnergies()
+    public void AutoMakingEnergies()
     {
         _makingCoroutine = StartCoroutine(AutoMakingEnergy());
     }

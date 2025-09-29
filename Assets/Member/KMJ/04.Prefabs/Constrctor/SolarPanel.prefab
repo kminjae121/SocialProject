@@ -114,6 +114,8 @@ MonoBehaviour:
   - {fileID: 0}
   currentBuilding: {fileID: 11400000, guid: 42d5546031a2e1940aaa1f7d7192642a, type: 2}
   resourceChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
+  factory: {fileID: 7322050839715822067}
+  reduceValue: 0
 --- !u!114 &8520364001028939670
 MonoBehaviour:
   m_ObjectHideFlags: 0
