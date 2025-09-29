@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &33355010
 Transform:
   m_ObjectHideFlags: 0
@@ -1577,7 +1577,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1788,7 +1788,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.010001183, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 49.056}
+  m_LocalScale: {x: 0.5, y: 1, z: 49.056}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1039416229}
@@ -2664,7 +2664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6183165306132972408, guid: 9ca92686a21d51949966278a725eee99, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8144207568722432478, guid: 9ca92686a21d51949966278a725eee99, type: 3}
       propertyPath: m_Layer
@@ -3821,7 +3821,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3895,6 +3895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCityEnergy: 100
+  _electricityEventChannel: {fileID: 0}
 --- !u!114 &2094155357
 MonoBehaviour:
   m_ObjectHideFlags: 0

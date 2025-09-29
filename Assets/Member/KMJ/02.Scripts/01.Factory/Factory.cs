@@ -44,8 +44,8 @@ public abstract class Factory : MonoBehaviour
 
     #endregion 
 
-    protected event Action _brokeEvent;
     protected event Action _minusEvent;
+
     protected event Action _fixEvent;
 
     protected float _currentEfficiency = 10;
@@ -107,7 +107,7 @@ public abstract class Factory : MonoBehaviour
 
     public void FixFactory(float addValue)
     {
-        if (_currentEfficiency > 0 && _reduceCoroutine != null)
+        if (_reduceCoroutine != null)
         {
             _currentEfficiency += addValue;
             _fixEvent?.Invoke();
@@ -139,10 +139,12 @@ public abstract class Factory : MonoBehaviour
 
             _currentEfficiency -= _reduceValue;
             _minusEvent?.Invoke();
+
+            Debug.Log(_increaseEnergy);
         }
+        
         _currentEfficiency = 0;
         _reduceCoroutine = null;
-        _brokeEvent?.Invoke();
     }
 
     private IEnumerator AutoMakingEnergy()

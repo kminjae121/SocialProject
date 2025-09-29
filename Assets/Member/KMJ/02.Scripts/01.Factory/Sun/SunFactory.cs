@@ -7,8 +7,8 @@ public class SunFactory : Factory
     {
         _minusEvent += HandleMinus;
         _fixEvent += HandleFix;
-        _brokeEvent += HandleBroke;
     }
+
 
 
     protected override void MakingEnergy()
@@ -37,12 +37,6 @@ public class SunFactory : Factory
                 break;
         }
     }
-    
-    private void HandleBroke()
-    {
-        gameObject.SetActive(false);
-    }
-
     private void HandleFix()
     {
         PlusIncreaseEnergy();
