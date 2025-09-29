@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingIcon: {fileID: 6779928016505200293}
   buildingNameText: {fileID: 9095679038064524452}
+  constructionSystem: {fileID: 0}
 --- !u!1 &4912996594416104208
 GameObject:
   m_ObjectHideFlags: 0

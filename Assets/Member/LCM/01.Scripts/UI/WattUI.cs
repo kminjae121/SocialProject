@@ -42,7 +42,7 @@ namespace Member.LCM._01.Scripts.UI
 
         private void HandleChangeElectricity(GetResourceEvent evt)
         {
-            if(Mathf.Approximately(_previousWattAmount, 0f)) return;
+            if(_previousWattAmount == evt.Electricity) return;
             
             wattText.SetText($"{UnitConversion(evt.Electricity)}");
         }
