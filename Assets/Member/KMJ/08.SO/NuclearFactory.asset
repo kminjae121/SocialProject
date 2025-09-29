@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: NuclearFactory
   m_EditorClassIdentifier: 
   FactoryName: NuclearFactory
-  IncreasingValue: 316
-  ReduceTime: 3
-  ReduceValue: 0.1
+  IncreasingValue: 1000
+  ReduceTime: 2
+  ReduceValue: 50
   _whatIsCollect:
     serializedVersion: 2
     m_Bits: 0

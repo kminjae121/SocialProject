@@ -30,11 +30,7 @@ public abstract class Factory : MonoBehaviour
         set => _factorySO.ReduceValue = value;
     }
 
-    protected float _increaseEnergy
-    {
-        get => _factorySO.IncreasingValue;
-        set => _factorySO.IncreasingValue = value;
-    }
+    protected float _increaseEnergy;
 
     protected LayerMask _whatIsCanConstuction
     {
@@ -58,10 +54,15 @@ public abstract class Factory : MonoBehaviour
     private void OnEnable()
     {
         AutoMakingEnergies();
-        //AutoReduceEfficiency();
         _weatherEventChannel.AddListener<WeatherChangeEvent>(WeatherCondition);
+        _increaseEnergy = _factorySO.IncreasingValue;
     }
-    
+
+    private void Start()
+    {
+        AutoReduceEfficiency();
+    }
+
     protected virtual void WeatherCondition(WeatherChangeEvent evt)
     {
         
@@ -78,7 +79,7 @@ public abstract class Factory : MonoBehaviour
     
     public void PlusIncreaseEnergy()
     {
-        if (_increaseEnergy == _factorySO.IncreasingValue) return;
+      //  if (_increaseEnergy == _factorySO.IncreasingValue) return;
 
         _increaseEnergy += _modifierValue;
 
@@ -133,14 +134,13 @@ public abstract class Factory : MonoBehaviour
 
     private IEnumerator AutoReduce()
     {
-        while(_currentEfficiency > 0)
+        while(_increaseEnergy > 0)
         {
             yield return new WaitForSeconds(_reduceTime);
-
+            
+            print("됨");
             _currentEfficiency -= _reduceValue;
             _minusEvent?.Invoke();
-
-            Debug.Log(_increaseEnergy);
         }
         
         _currentEfficiency = 0;

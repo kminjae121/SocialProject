@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3427676261204484396}
   - component: {fileID: 8741074717142728557}
   - component: {fileID: 4443341410433520992}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: WindFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factorySO: {fileID: 11400000, guid: f5b0c6f580d128941989d5ae10ba194a, type: 2}
-  _modifierValue: 0
+  _modifierValue: 4
   _weatherEventChannel: {fileID: 11400000, guid: 6bbac497009b81b4392ab40af6827ee0, type: 2}
   _electricityEventChannel: {fileID: 11400000, guid: 6dff75f4001fad948842b4656247debf, type: 2}
 --- !u!65 &4443341410433520992

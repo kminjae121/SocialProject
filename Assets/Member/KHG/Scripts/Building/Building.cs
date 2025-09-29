@@ -1,5 +1,6 @@
 ﻿using Core.Events;
 using System.Collections.Generic;
+using Member.LCM._01.Scripts.UI;
 using UnityEngine;
 
 namespace KHG.Scripts.Buildings
@@ -9,7 +10,7 @@ namespace KHG.Scripts.Buildings
         [SerializeField] private List<MeshRenderer> windows;
         [SerializeField] private BuildingSO currentBuilding;
         [SerializeField] private GameEventChannelSO resourceChannel;
-
+        
         private MeshRenderer _renderer;
 
         private void Awake()
@@ -29,6 +30,7 @@ namespace KHG.Scripts.Buildings
                     renderer.enabled = value;
             if(_renderer != null)
                 _renderer.enabled = value;
+            
         }
 
         public void StartConstruction()
