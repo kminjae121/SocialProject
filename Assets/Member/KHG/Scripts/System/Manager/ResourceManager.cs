@@ -7,10 +7,12 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     [SerializeField] private GameEventChannelSO resourceChannel;
     public int Population { get; private set; }
     public int Electricity { get; private set; }
-    public int Money { get; private set; } = 9999;
+    public int Money { get; private set; } = 1000;
 
     private EnergyManager _energyManager;
     private DelayInvoker<int> resourceRefresher;
+    [Space]
+    [SerializeField] private int moneyPerPerson = 300;
 
     protected override void Awake()
     {
@@ -72,6 +74,11 @@ public class ResourceManager : MonoSingleton<ResourceManager>
         SendMoney();
     }
 
+    public void ClaimMoney()
+    {
+        Money += Population * moneyPerPerson;
+        resourceChannel.RaiseEvent(ResourceEvents.MoneyEvent.Init(Money));
+    }
     public bool CanConstructionObject(int amount)
     {
         return Money - amount >= 0;
