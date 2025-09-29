@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core.Events;
+using Member.LCM._01.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -25,6 +26,9 @@ public class ConstructionSystem : MonoBehaviour
     [SerializeField] private LayerMask _whatIsConstruction;
     [SerializeField] private LayerMask _cantConstruction;
     [SerializeField] private GameEventChannelSO _mapChannel;
+    
+    [SerializeField] private GameObject loadingUI;
+    [SerializeField] private Transform uiRoot;
 
     private bool _isTopSpawning = false;
 
@@ -220,6 +224,10 @@ public class ConstructionSystem : MonoBehaviour
 
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
+        
+        LoadingUI _loadingUI = Instantiate(loadingUI, uiRoot).GetComponent<LoadingUI>();
+        _loadingUI.SetPosition(gridPosition);
+        _loadingUI.SetTimeAndStartLoading(5f);
 
         bool placementValidity = CheckPlacementValidity(gridPosition, selectObjectIndex);
         if (placementValidity == false)
