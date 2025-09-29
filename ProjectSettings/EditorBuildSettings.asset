@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Member/KHG/Scene/TItleScene.unity
     guid: d193bcf04199dc745b86837b6e0b97c7
+  - enabled: 1
+    path: Assets/Member/01.Scene/MScene.unity
+    guid: d7148c7090907c94d848fbbbcd0eb723
+  - enabled: 1
+    path: Assets/Member/KHG/Scene/Gameovers/BlackoutOver.unity
+    guid: 5d05e12f1507b1f40aeb5b8c026e7358
+  - enabled: 1
+    path: Assets/Member/KHG/Scene/Gameovers/OutOfMoneyOver.unity
+    guid: bc8bb4c82cb14584e87f82f1d0f67c2e
+  - enabled: 1
+    path: Assets/Member/KHG/Scene/Gameovers/OutOfPopulationOver.unity
+    guid: 1650796c0264f72459ad64dec6d30071
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
