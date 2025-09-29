@@ -5,7 +5,11 @@ public class NuclrearObject : Factory
     private void Awake()
     {
         _minusEvent += HandleMinus;
+        _fixEvent += HandleFix;
     }
+
+
+
     protected override void MakingEnergy()
     {
         EnergyManager.Instance.GetEnergy(_increaseEnergy);
@@ -32,9 +36,12 @@ public class NuclrearObject : Factory
                 break;
         }
     }
-
+    private void HandleFix()
+    {
+        PlusIncreaseEnergy();
+    }
     private void HandleMinus()
     {
-
+        MinusIncreaseEnergy();
     }
 }

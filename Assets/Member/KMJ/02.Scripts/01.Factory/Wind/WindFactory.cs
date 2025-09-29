@@ -6,8 +6,10 @@ public class WindFactory : Factory
     private void Awake()
     {
         _minusEvent += HandleMinus;
+        _fixEvent += HandleFix;
     }
-    
+
+
     protected override void WeatherCondition(WeatherChangeEvent evt)
     {
         switch (evt.Weather)
@@ -37,7 +39,11 @@ public class WindFactory : Factory
 
     private void HandleMinus()
     {
-
+        MinusIncreaseEnergy();
+    }
+    private void HandleFix()
+    {
+        PlusIncreaseEnergy();
     }
 
 

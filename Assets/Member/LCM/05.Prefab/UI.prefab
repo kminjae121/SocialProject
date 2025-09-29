@@ -2846,7 +2846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC778\uAD6C\uC218 : 0\uBA85 / 0\uBA85"
+  m_text: "\uC778\uAD6C\uC218 : 0\uBA85"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8b3130144217a884691d0c991bb9fee4, type: 2}
   m_sharedMaterial: {fileID: 7518302949045802167, guid: 8b3130144217a884691d0c991bb9fee4, type: 2}
