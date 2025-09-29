@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseIndicator: {fileID: 9158913216410854117}
-  cellIndicator: {fileID: 5795122944714438674}
+  cellIndicator: {fileID: 0}
   _getMousePos: {fileID: 7859964505672127473}
   _grid: {fileID: 0}
   database: {fileID: 11400000, guid: aa2bf2356bee83b43a8be107f68a1410, type: 2}

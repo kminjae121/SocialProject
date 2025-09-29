@@ -45,7 +45,7 @@ namespace Member.LCM._01.Scripts.UI
                     , Color.green);
             }
 
-            populationText.SetText($"인구수 : {evt.Population}명 / {evt.Population}명");
+            populationText.SetText($"인구수 : {evt.Population}명");
             _previousPopulation = evt.Population;
         }
     }
