@@ -172,6 +172,9 @@ public class ConstructionSystem : MonoBehaviour
         }
         else
             return;
+        
+        Destroy(cellIndicator);
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
         RaycastHit hit;
