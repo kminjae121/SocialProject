@@ -4,6 +4,7 @@ using UnityEngine;
 public class UIEvents
 {
     public static readonly SceneChangePanelEvent SceneChangePanelEvent = new();
+    public static readonly MessageEvent MessageEvent = new();
 }
 
 public class SceneChangePanelEvent : GameEvent
@@ -17,4 +18,10 @@ public class SceneChangePanelEvent : GameEvent
         Enable = value;
         return this;
     }
+}
+
+public class MessageEvent : GameEvent
+{
+    public string Message;
+    public float LifeTime;
 }
