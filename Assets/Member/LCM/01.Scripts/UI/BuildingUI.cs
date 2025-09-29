@@ -21,7 +21,7 @@ namespace Member.LCM._01.Scripts.UI
         {
             foreach (var building in objectData.objectData)
             {
-                Instantiate(buildingIconUI, contentTrm).Initialize(building.thisImage, building.Name);
+                Instantiate(buildingIconUI, contentTrm).Initialize(building.thisImage, building.Name, building.ID);
             }
         }
 

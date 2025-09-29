@@ -14,6 +14,9 @@ public abstract class Factory : MonoBehaviour
     [SerializeField] private float _modifierValue;
 
     [SerializeField] protected GameEventChannelSO _weatherEventChannel;
+    
+    [SerializeField] protected GameEventChannelSO _electricityEventChannel;
+    
     #region Property Field
     protected float _reduceTime
     {

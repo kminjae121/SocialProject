@@ -30,7 +30,7 @@ namespace Member.LCM._01.Scripts.UI
 
         private void HandleChangePopulation(GetResourceEvent evt)
         {
-            if(Mathf.Approximately(evt.Population, 0f)) return;
+            if(evt.Population == _previousPopulation) return;
             
             if (_previousPopulation > evt.Population)
             {

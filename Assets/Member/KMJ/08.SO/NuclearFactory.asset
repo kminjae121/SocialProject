@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NuclearFactory
   m_EditorClassIdentifier: 
   FactoryName: NuclearFactory
-  IncreasingValue: 0
+  IncreasingValue: 316
   ReduceTime: 3
   ReduceValue: 0.1
   _whatIsCollect:
