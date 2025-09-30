@@ -10,17 +10,19 @@ public class GameOverDetecter : MonoBehaviour
 
     private int _blackoutIndex = 0;
 
-    [Space] private int maxBlackoutCount = 3;
+    [Space] 
+    [SerializeField] int maxBlackoutCount = 3;
 
     private void Awake()
     {
-        resourceChannel.AddListener<TurnOffTheLight>(HandleBlackout);
+        _blackoutIndex = maxBlackoutCount;
+        // resourceChannel.AddListener<TurnOffTheLight>(HandleBlackout);
         resourceChannel.AddListener<MoneyEvent>(HandleResource);
     }
 
     private void OnDestroy()
     {
-        resourceChannel.RemoveListener<TurnOffTheLight>(HandleBlackout);
+        // resourceChannel.RemoveListener<TurnOffTheLight>(HandleBlackout);
         resourceChannel.RemoveListener<MoneyEvent>(HandleResource);
     }
 
@@ -30,14 +32,14 @@ public class GameOverDetecter : MonoBehaviour
             uiChannel.RaiseEvent(UIEvents.SceneChangePanelEvent.Init(true, "OutOfMoneyOver"));
     }
 
-    private void HandleBlackout(TurnOffTheLight evt)
-    {
-        if (evt.isTurnOff)
-            _blackoutIndex++;
-
-        if(maxBlackoutCount <= _blackoutIndex)
-            uiChannel.RaiseEvent(UIEvents.SceneChangePanelEvent.Init(true,"BlackoutOver"));
-    }
+    // private void HandleBlackout(TurnOffTheLight evt)
+    // {
+    //     print("블랙아웃:" + _blackoutIndex);
+    //     if (evt.isTurnOff)
+    //         _blackoutIndex--;
+    //
+    //     if(maxBlackoutCount <= _blackoutIndex)
+    // }
 }
 
 public enum GameOverType

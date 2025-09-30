@@ -26,6 +26,7 @@ public class ConstructionSystem : MonoBehaviour
     [SerializeField] private LayerMask _whatIsConstruction;
     [SerializeField] private LayerMask _cantConstruction;
     [SerializeField] private GameEventChannelSO _mapChannel;
+    [SerializeField] private GameEventChannelSO _uiChannel;
     
     [SerializeField] private GameObject loadingUI;
     [SerializeField] private Transform uiRoot;
@@ -176,7 +177,10 @@ public class ConstructionSystem : MonoBehaviour
             ResourceManager.Instance.ReduceSatisfaction(database.objectData[selectObjectIndex].price);
         }
         else
+        {
+            _uiChannel.RaiseEvent(UIEvents.MessageEvent.Init("돈이 부족하여 삭제할 수 없습니다.",1f));
             return;
+        }
         
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -206,6 +210,7 @@ public class ConstructionSystem : MonoBehaviour
 
     private void PlaceStructure()
     {
+        
         if (_getMousePos.IsPointerOverUI())
             return;
 
@@ -221,7 +226,10 @@ public class ConstructionSystem : MonoBehaviour
             ResourceManager.Instance.ReduceSatisfaction(database.objectData[selectObjectIndex].price);
         }
         else
+        {
+            _uiChannel.RaiseEvent(UIEvents.MessageEvent.Init("돈이 부족하여 설치할 수 없습니다.",1f));
             return;
+        }
 
         Vector3 mousePosition = _getMousePos.GetWorldPosition();
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);

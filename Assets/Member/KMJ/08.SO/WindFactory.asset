@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WindFactory
   m_EditorClassIdentifier: 
   FactoryName: WindFactory
-  IncreasingValue: 1200
+  IncreasingValue: 10
   ReduceTime: 15
   ReduceValue: 30
   _whatIsCollect:
