@@ -24,4 +24,11 @@ public class MessageEvent : GameEvent
 {
     public string Message;
     public float LifeTime;
+
+    public MessageEvent Init(string message, float lifeTime)
+    {
+        Message = message;
+        LifeTime = lifeTime;
+        return this;
+    }
 }

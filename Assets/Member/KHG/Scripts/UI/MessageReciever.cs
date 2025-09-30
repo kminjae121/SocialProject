@@ -12,6 +12,7 @@ public class MessageReciever : MonoBehaviour
     private void Awake()
     {
         messageChannel.AddListener<MessageEvent>(HandleMessage);
+        messageTmp.DOFade(0, 0f);
     }
 
     private void OnDestroy()
@@ -21,6 +22,8 @@ public class MessageReciever : MonoBehaviour
 
     private void HandleMessage(MessageEvent evt)
     {
+        messageTmp.DOFade(0, 0f);
+        DOTween.Kill(messageTmp);
         messageTmp.text = evt.Message;
         messageTmp.DOFade(1, 0.3f).OnComplete(() => messageTmp.DOFade(1, evt.LifeTime).OnComplete(() => messageTmp.DOFade(0, 0.3f)));
     }
