@@ -13,6 +13,7 @@ public class ResourceManager : MonoSingleton<ResourceManager>
     private EnergyManager _energyManager;
     private DelayInvoker<int> resourceRefresher;
     private bool _isBlackOut;
+    
     [Space]
     [SerializeField] private int moneyPerPerson = 300;
 
